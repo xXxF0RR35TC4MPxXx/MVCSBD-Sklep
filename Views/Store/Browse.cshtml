@@ -5,21 +5,28 @@
     ViewBag.Kategoria = Model.Name;
 
 }
+<link href="~/Styling/cards.css" rel="stylesheet" />
 
 
-<h2>Produkty z kategorii: @Model.Name</h2>
-@Html.ActionLink("Powrót do strony głównej", "")
-<div style="text-align:left">@Html.ActionLink("Generuj cennik PDF", "ProductsToPDF", new { name = Model.Name})</div>
+<div>
+    @Html.ActionLink("Powrót do strony głównej", "")
+</div>
+<div class="heading">
+    <h2>Produkty z kategorii: @Model.Name</h2>
+    <div>@Html.ActionLink("Generuj cennik PDF", "ProductsToPDF", new { name = Model.Name })</div>
+</div>
+<div class="card-container">
+    <div class="card-grid">
+        @foreach (var product in Model.Products)
+        {
+            <a class="product-card" href="/Store/Details/@product.Id">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/b/bd/Test.svg" class="product-img" />
+                @*Tu będzie product.img czy coś ^*@
+                <h3>@product.Name</h3>
+                <p class="small">@product.Cena PLN</p>
+            </a>
+        }
+    </div>
+</div>
 
-<p>&nbsp;</p>
-<table class="table">
-    @foreach (var product in Model.Products)
-    {
-        <tr>
-            <td style="text-align:left; font-size: 15px; font-weight: bold;">@Html.ActionLink(product.Name, "Details", new { id = product.Id })</td>
-            <td style="color:red; text-align:right; padding-left: 20px;">@product.Cena PLN</td>
-        </tr>
-    }
-
-</table>
 
