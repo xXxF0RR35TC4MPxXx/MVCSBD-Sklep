@@ -1,0 +1,82 @@
+﻿@model IEnumerable<MVCSBD_Sklep.Models.Product>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Producent_Id)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ReleaseDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Description)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CzyRGB)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.MaxDPI)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ButtonCount)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.IsWireless)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Cena)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.Action("Nazwa", new { it = item })
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @item.ReleaseDate.ToString("dd/MM/yyyy")
+            </td>
+            <td class="ellipsis">
+                @Html.DisplayFor(modelItem => item.Description)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CzyRGB)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MaxDPI)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ButtonCount)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IsWireless)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Cena)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+                @Html.ActionLink("Details", "Details", new { id = item.Id }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+            </td>
+        </tr>
+    }
+
+</table>

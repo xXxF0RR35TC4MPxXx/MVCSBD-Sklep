@@ -1,0 +1,90 @@
+﻿@model MVCSBD_Sklep.Models.Product
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Product</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            Producent:
+        </dt>
+
+        <dd>
+            @ViewBag.prod
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ReleaseDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ReleaseDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Description)
+        </dt>
+
+        <dd>
+            @Html.Raw(Model.Description)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CzyRGB)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CzyRGB)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.MaxDPI)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MaxDPI)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ButtonCount)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ButtonCount)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.IsWireless)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IsWireless)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Cena)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Cena)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

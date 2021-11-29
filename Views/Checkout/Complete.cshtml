@@ -1,0 +1,14 @@
+﻿@model MVCSBD_Sklep.Models.Zamówienie
+
+@{
+    ViewBag.Title = "Złożono zamówienie";
+}
+
+<h2>Złożono zamówienie!</h2>
+<p>Dziękujemy za złożenie zamówienia! Numer twojego zamówienia to: @Model.OrderId</p>
+<p>
+    Zapraszamy ponownie!
+    @Html.ActionLink("Strona główna","Index", "Home")
+</p>
+
+

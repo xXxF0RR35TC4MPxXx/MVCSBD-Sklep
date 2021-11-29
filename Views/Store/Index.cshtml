@@ -1,0 +1,15 @@
+﻿@model IEnumerable<MVCSBD_Sklep.Models.Kategoria>
+
+@{
+    ViewBag.Title = "Lista kategorii";
+}
+<h3>Dostępne kategorie produktów</h3>
+<p>
+    Wybierz spośród @Model.Count() kategorii:
+</p>
+<ul>
+    @foreach (var category in Model)
+    {
+        <li>@Html.ActionLink(category.Name, "Browse", new { kategoria = category.Name })</li>
+    }
+</ul>

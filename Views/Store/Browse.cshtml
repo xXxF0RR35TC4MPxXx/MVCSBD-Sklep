@@ -1,0 +1,25 @@
+﻿@model MVCSBD_Sklep.Models.Kategoria
+
+@{
+    ViewBag.Title = "Browse";
+    ViewBag.Kategoria = Model.Name;
+
+}
+
+
+<h2>Produkty z kategorii: @Model.Name</h2>
+@Html.ActionLink("Powrót do strony głównej", "")
+<div style="text-align:left">@Html.ActionLink("Generuj cennik PDF", "ProductsToPDF", new { name = Model.Name})</div>
+
+<p>&nbsp;</p>
+<table class="table">
+    @foreach (var product in Model.Products)
+    {
+        <tr>
+            <td style="text-align:left; font-size: 15px; font-weight: bold;">@Html.ActionLink(product.Name, "Details", new { id = product.Id })</td>
+            <td style="color:red; text-align:right; padding-left: 20px;">@product.Cena PLN</td>
+        </tr>
+    }
+
+</table>
+

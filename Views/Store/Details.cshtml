@@ -1,0 +1,101 @@
+﻿@model MVCSBD_Sklep.Models.Product
+
+@{
+    ViewBag.Title = "Details - " + Model.Name;
+
+
+}
+
+
+
+<table width="100%">
+    <tr>
+        <td align="left" width="50%"><h2>@ViewBag.Producent @Model.Name</h2></td>
+        @if (User.Identity.IsAuthenticated)
+        {<td width="20%"><p class="button">@Html.ActionLink("Dodaj do koszyka", "AddToCart", "ShoppingCart", new { id = Model.Id }, "")
+</p></td>}
+        <td align="right" width="30%" style="color:red"><h2>@Model.Cena PLN </h2></td>
+    </tr>    
+</table>
+
+    
+<table width="100%">
+    <tr><td>@Html.ActionLink("Powrót do listy produktów", "Browse", new { kategoria = ViewBag.Kategoria })</td></tr>
+    <tr><td>&nbsp;</td></tr>
+    <tr><td>&nbsp;</td></tr>
+    <tr>
+        <td><b>@Html.DisplayNameFor(Model => Model.Kategoria_Id)</b></td>
+        <td>@ViewBag.Kategoria</td>
+    </tr>
+    <tr><td>&nbsp;</td></tr>
+    <tr>
+        <td><b>@Html.DisplayNameFor(Model => Model.Producent_Id)</b></td>
+        <td>@ViewBag.Producent</td>
+    </tr>
+    <tr><td>&nbsp;</td></tr>
+    <tr>
+        <td><b>@Html.DisplayNameFor(Model => Model.Name)</b></td>
+        <td>@Model.Name</td>
+    </tr>
+    <tr><td>&nbsp;</td></tr>
+    <tr>
+        <td><b>@Html.DisplayNameFor(Model => Model.Description)</b></td>
+        <td>@Html.Raw(Model.Description)</td>
+    </tr>
+    <tr><td>&nbsp;</td></tr>
+    <tr>
+        <td><b>@Html.DisplayNameFor(Model => Model.ReleaseDate)</b></td>
+        <td>@Html.DisplayFor(Model => Model.ReleaseDate)</td>
+    </tr>
+    <tr><td>&nbsp;</td></tr>
+    @if (ViewBag.Kategoria != "Gry")
+    {
+        <tr>
+            <td><b>@Html.DisplayNameFor(Model => Model.CzyRGB)</b></td>
+            <td>@Model.CzyRGB</td>
+        </tr>
+        <tr><td>&nbsp;</td></tr>
+    }
+    @if (ViewBag.Kategoria == "Myszki")
+    {
+
+        <tr>
+            <td><b>@Html.DisplayNameFor(Model => Model.MaxDPI)</b></td>
+            <td>@Model.MaxDPI</td>
+        </tr>
+        <tr><td>&nbsp;</td></tr>
+    }
+    @if (ViewBag.Kategoria == "Klawiatury")
+    {
+
+        <tr>
+            <td><b>@Html.DisplayNameFor(Model => Model.SwitchType_Id)</b></td>
+            <td>@ViewBag.SwitchType</td>
+        </tr>
+        <tr><td>&nbsp;</td></tr>
+    }
+    @if (ViewBag.Kategoria == "Myszki" || ViewBag.Kategoria == "Klawiatury" || ViewBag.Kategoria == "Kontrolery")
+    {
+        <tr>
+            <td><b>@Html.DisplayNameFor(Model => Model.ButtonCount)</b></td>
+            <td>@Model.ButtonCount</td>
+        </tr>
+        <tr><td>&nbsp;</td></tr>
+    }
+    @if (ViewBag.Kategoria != "Gry")
+    {
+        <tr>
+            <td><b>@Html.DisplayNameFor(Model => Model.IsWireless)</b></td>
+            <td>@Model.IsWireless</td>
+        </tr>
+        <tr><td>&nbsp;</td></tr>
+
+        <tr>
+            <td><b>@Html.DisplayNameFor(Model => Model.Color_Id)</b></td>
+            <td>@ViewBag.Kolor</td>
+        </tr>
+        <tr><td>&nbsp;</td></tr>
+    }
+</table>
+    
+
