@@ -199,6 +199,14 @@
     <Compile Include="Migrations\XmoreltronikEntities\202111291003158_StanyRealizacji2.Designer.cs">
       <DependentUpon>202111291003158_StanyRealizacji2.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\XmoreltronikEntities\202111291658004_OrderEditFix.cs" />
+    <Compile Include="Migrations\XmoreltronikEntities\202111291658004_OrderEditFix.Designer.cs">
+      <DependentUpon>202111291658004_OrderEditFix.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\XmoreltronikEntities\202111291734039_OrderDateplzwork.cs" />
+    <Compile Include="Migrations\XmoreltronikEntities\202111291734039_OrderDateplzwork.Designer.cs">
+      <DependentUpon>202111291734039_OrderDateplzwork.cs</DependentUpon>
+    </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Color.cs" />
     <Compile Include="Models\Country.cs" />
@@ -229,6 +237,7 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="daneDoSklepu.sql" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -327,6 +336,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\XmoreltronikEntities\202111291003158_StanyRealizacji2.resx">
       <DependentUpon>202111291003158_StanyRealizacji2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\XmoreltronikEntities\202111291658004_OrderEditFix.resx">
+      <DependentUpon>202111291658004_OrderEditFix.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\XmoreltronikEntities\202111291734039_OrderDateplzwork.resx">
+      <DependentUpon>202111291734039_OrderDateplzwork.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

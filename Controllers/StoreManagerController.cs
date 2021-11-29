@@ -27,7 +27,6 @@ namespace MVCSBD_Sklep.Controllers
         {
             return View(db.Products.ToList());
         }
-
         // GET: StoreManager/Details/5
         public ActionResult Details(int? id)
         {
@@ -110,7 +109,7 @@ namespace MVCSBD_Sklep.Controllers
         // Aby uzyskać więcej szczegółów, zobacz https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateInput(false)]
-        public ActionResult Edit([Bind(Include = "Id,ReleaseDate,Producent_ID,Kategoria_Id,Color_Id,Name,Description,CzyRGB,MaxDPI,ButtonCount,IsWireless,Cena")] Product product)
+        public ActionResult Edit(Product product)
         {
             
             ViewBag.Producenci = new SelectList(db.Producents, "Id", "Name", "Country_Id");

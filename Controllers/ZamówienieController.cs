@@ -87,11 +87,17 @@ namespace MVCSBD_Sklep.Controllers
         // POST: Zamówienie/Edit/5
         [HttpPost]
         [ValidateInput(false)]
-        public ActionResult Edit(Zamówienie zamówienie)
+        public ActionResult Edit([Bind(Include = "OrderId, Username, FirstName, LastName, Address, City, PostalCode, Country, Phone, Email, Total, OrderDate, deliveryTypeId, paymentTypeId, DeliveryStateId")] Zamówienie zamówienie)
         {
+            //NIE DZIAŁA EDYTOWANIE ZAMÓWIEŃ - NIE MAM POJĘCIA CZEMU
+            //Wywala, że edytowano 0 rekordów w bazie ciągle
             ViewBag.DeliveryStateId = new SelectList(db.DeliveryStates, "Id", "Name", zamówienie.DeliveryStateId);
             ViewBag.deliveryTypeId = new SelectList(db.DeliveryTypes, "Id", "Name", zamówienie.deliveryTypeId);
             ViewBag.paymentTypeId = new SelectList(db.PaymentTypes, "Id", "Name", zamówienie.paymentTypeId);
+            if (zamówienie == null)
+            {
+                return HttpNotFound();
+            }
             if (ModelState.IsValid)
             {
                 db.Entry(zamówienie).State = EntityState.Modified;

@@ -16,7 +16,7 @@
     <hr />
     @Html.ValidationSummary(true, "", new { @class = "text-danger" })
     @Html.HiddenFor(model => model.Id)
-    @TempData["KategoriaID"]
+
     <div class="form-group">
         @Html.LabelFor(model => model.Producent_Id, htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
@@ -99,6 +99,14 @@
                 @Html.EditorFor(model => model.IsWireless)
                 @Html.ValidationMessageFor(model => model.IsWireless, "", new { @class = "text-danger" })
             </div>
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.SwitchType_Id, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.ValidationMessageFor(model => model.SwitchType_Id, "", new { @class = "text-danger" })
+            @Html.DropDownListFor(m => m.SwitchType_Id, ViewBag.Switche as SelectList, "--Wybierz typ przełączników--")
         </div>
     </div>
 
