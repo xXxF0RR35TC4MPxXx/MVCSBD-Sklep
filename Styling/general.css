@@ -1,0 +1,26 @@
+﻿.heading {
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+.center-align {
+    justify-content:center;
+    align-content:center;
+}
+
+.CustomBtn {
+    color: white;
+    background-color: rgb(46, 46, 46);
+    text-align: center;
+    font-size: 1.5rem;
+    border-radius: 4px;
+    width: 100px;
+    height: 35px;
+    border: none;
+    cursor: pointer;
+}
+
+    .CustomBtn:hover {
+        background-color: rgb(147 146 146);
+        transition: all 0.2s ease-out;
+    }
