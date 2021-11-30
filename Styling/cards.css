@@ -21,6 +21,39 @@
     background-color: white;
 }
 
+.category-card {
+    display: block;
+    top: 0px;
+    position: relative;
+    height: 150px;
+    width: 200px;
+    background-color: #f2f8f9;
+    border-radius: 10px;
+    padding: 22px 14px;
+    margin: 12px;
+    text-decoration: none;
+    z-index: 0;
+    overflow: hidden;
+    border: 1px solid #f2f8f9;
+    align-content: center;
+    justify-content:center;
+}
+
+.category-card:hover {
+    transition: all 0.2s ease-out;
+    box-shadow: 0px 4px 8px rgba(38, 38, 38, 0.2);
+    top: -4px;
+    border: 1px solid #cccccc;
+    background-color: white;
+}
+
+.category-name {
+    color:black;
+    font-size:20px;
+    font-weight:700;
+    text-align:center;
+    top:75px;
+}
 
 h3 {
     color: black;
