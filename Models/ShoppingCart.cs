@@ -26,7 +26,7 @@ namespace MVCSBD_Sklep.Models
         {
             // Get the matching cart and album instances
             var cartItem = storeDB.Koszyki.SingleOrDefault(
-                c => c.KoszykId == ShoppingCartId
+                c => c.KoszykId == HttpContext.Current.User.Identity.Name.ToLower()
                 && c.ProduktId == produkt.Id);
 
             if (cartItem == null)
@@ -35,7 +35,7 @@ namespace MVCSBD_Sklep.Models
                 cartItem = new Koszyk
                 {
                     ProduktId = produkt.Id,
-                    KoszykId = ShoppingCartId,
+                    KoszykId = HttpContext.Current.User.Identity.Name.ToLower(),
                     Count = 1,
                     DateCreated = DateTime.Now
                 };
@@ -54,7 +54,7 @@ namespace MVCSBD_Sklep.Models
         {
             // Get the cart
             var cartItem = storeDB.Koszyki.Single(
-                cart => cart.KoszykId == ShoppingCartId
+                cart => cart.KoszykId == HttpContext.Current.User.Identity.Name.ToLower()
                 && cart.RecordId == id);
 
             int itemCount = 0;
@@ -78,7 +78,7 @@ namespace MVCSBD_Sklep.Models
         public void EmptyCart()
         {
             var cartItems = storeDB.Koszyki.Where(
-                cart => cart.KoszykId == ShoppingCartId);
+                cart => cart.KoszykId == HttpContext.Current.User.Identity.Name.ToLower());
 
             foreach (var cartItem in cartItems)
             {
@@ -90,13 +90,13 @@ namespace MVCSBD_Sklep.Models
         public List<Koszyk> GetCartItems()
         {
             return storeDB.Koszyki.Where(
-                cart => cart.KoszykId == ShoppingCartId).ToList();
+                cart => cart.KoszykId.ToLower() == HttpContext.Current.User.Identity.Name.ToLower()).ToList();
         }
         public int GetCount()
         {
             // Get the count of each item in the cart and sum them up
             int? count = (from cartItems in storeDB.Koszyki
-                          where cartItems.KoszykId == ShoppingCartId
+                          where cartItems.KoszykId == HttpContext.Current.User.Identity.Name.ToLower()
                           select (int?)cartItems.Count).Sum();
             // Return 0 if all entries are null
             return count ?? 0;
@@ -107,7 +107,7 @@ namespace MVCSBD_Sklep.Models
             // the current price for each of those albums in the cart
             // sum all album price totals to get the cart total
             decimal? total = (from cartItems in storeDB.Koszyki
-                              where cartItems.KoszykId == ShoppingCartId
+                              where cartItems.KoszykId == HttpContext.Current.User.Identity.Name.ToLower()
                               select (int?)cartItems.Count *
                               cartItems.produkt.Cena).Sum();
 
@@ -170,7 +170,7 @@ namespace MVCSBD_Sklep.Models
         public void MigrateCart(string userName)
         {
             var shoppingCart = storeDB.Koszyki.Where(
-                c => c.KoszykId == ShoppingCartId);
+                c => c.KoszykId == HttpContext.Current.User.Identity.Name.ToLower());
 
             foreach (Koszyk item in shoppingCart)
             {

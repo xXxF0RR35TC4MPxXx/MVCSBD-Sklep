@@ -87,7 +87,7 @@ namespace MVCSBD_Sklep.Models
 
 
         [ScaffoldColumn(false)]
-        [Display(Name = "Data zamówienia: ")]
+        [Display(Name = "Ostatnia zmiana stanu: ")]
         [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:dd.MM.yyyy}")]
         [DataType(DataType.Date)]
         [Column(TypeName = "datetime2")]

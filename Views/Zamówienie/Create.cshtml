@@ -1,7 +1,7 @@
 ﻿@model MVCSBD_Sklep.Models.Zamówienie
 
 @{
-    ViewBag.Title = "Create";
+    ViewBag.Title = "Stwórz zamówienie";
 }
 
 <h2>Create</h2>
@@ -80,7 +80,7 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.deliveryTypeId, "deliveryTypeId", htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.deliveryTypeId, "Sposób dostawy", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.DropDownList("deliveryTypeId", null, htmlAttributes: new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.deliveryTypeId, "", new { @class = "text-danger" })
@@ -88,7 +88,7 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.paymentTypeId, "paymentTypeId", htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.paymentTypeId, "Metoda płatności", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.DropDownList("paymentTypeId", null, htmlAttributes: new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.paymentTypeId, "", new { @class = "text-danger" })
@@ -96,7 +96,7 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.DeliveryStateId, "DeliveryStateId", htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.DeliveryStateId, "Stan realizacji zamówienia", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.DropDownList("DeliveryStateId", null, htmlAttributes: new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.DeliveryStateId, "", new { @class = "text-danger" })

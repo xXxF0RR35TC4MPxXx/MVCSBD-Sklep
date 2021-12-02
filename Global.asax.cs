@@ -16,6 +16,14 @@ namespace MVCSBD_Sklep
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
+            Application["Visitor"] = 0;
+        }
+
+        void Session_Start(object sender, EventArgs e)
+        {
+            Application.Lock();
+            Application["Visitor"] = (int)Application["Visitor"] + 1;
+            Application.UnLock();
         }
     }
 }

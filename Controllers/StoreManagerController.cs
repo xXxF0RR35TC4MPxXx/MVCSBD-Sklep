@@ -117,15 +117,6 @@ namespace MVCSBD_Sklep.Controllers
             ViewBag.Kolory = new SelectList(db.Colors, "Id", "Name");
             ViewBag.Switche = new SelectList(db.SwitchTypes, "Id", "Name");
 
-            /*int katId = (int)TempData.Peek("KategoriaID");
-
-            //weź kategorię, która na liście swoich produktów ma produkt o podanym ID
-            var staraKategoria = db.Categories.Include("Products").Single(g => g.Id == katId);
-            staraKategoria.Products.RemoveAll(x => x.Kategoria_Id == katId);
-
-            Kategoria nowaKategoria = db.Categories.FirstOrDefault(g => g.Id == product.Kategoria_Id);
-            nowaKategoria.Products.Add(product);*/
-
             if (ModelState.IsValid)
             {
                 db.Entry(product).State = EntityState.Modified;
