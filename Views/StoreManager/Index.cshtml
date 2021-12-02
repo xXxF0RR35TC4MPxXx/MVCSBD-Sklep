@@ -1,16 +1,27 @@
 ﻿@model IEnumerable<MVCSBD_Sklep.Models.Product>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Panel administratora";
 }
 
-<h2>Index</h2>
+<h2>Panel administratora</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")<br/>
-    @Html.ActionLink("Zarządzaj zamówieniami", "", "Zamówienie")
+
+    @Html.ActionLink("Zarządzaj zamówieniami", "", "Zamówienie")<br />
+    @Html.ActionLink("Zarządzaj kolorami produktów", "", "Colors")<br />
+    @Html.ActionLink("Zarządzaj listą państw", "", "Countries")<br />
+    @Html.ActionLink("Zarządzaj listą producentów", "", "Producents")<br />
+    @Html.ActionLink("Zarządzaj stanami realizacji zamówień", "", "DeliveryStates")<br />
+    @Html.ActionLink("Zarządzaj sposobami dostawy zamówień", "", "DeliveryTypes")<br />
+    @Html.ActionLink("Zarządzaj kategoriami produktów", "", "Kategoria")<br />
+    @Html.ActionLink("Zarządzaj metodami płatności", "", "PaymentTypes")<br /><br />
+
+    @Html.ActionLink("Zarządzaj dostępnymi rolami użytkowników", "", "RoleManager")<br />
+    @Html.ActionLink("Zarządzaj rolami użytkowników", "", "UserRoles")<br />
+    <br /><br /><br /><br />@Html.ActionLink("Create New", "Create")<br /><br /><br />
 </p>
-<table class="table">
+<table class="table table-striped">
     <tr>
         <th>
             @Html.DisplayNameFor(model => model.Producent_Id)

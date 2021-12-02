@@ -3327,6 +3327,20 @@ fieldset[disabled] .btn-success.focus {
   background-color: #31b0d5;
   border-color: #1b6d85;
 }
+
+.btn-buy {
+    color: black;
+    background-color: gold;
+    border: solid 1px goldenrod;
+    border-color: goldenrod;
+
+}
+.btn-buy:focus,
+.btn-buy.focus {
+    color: #fff;
+    background-color: #fff9d5;
+    border-color: goldenrod;
+}
 .btn-info:hover {
   color: #fff;
   background-color: #31b0d5;

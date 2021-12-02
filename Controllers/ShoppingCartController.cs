@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-
+using System.Xml.Serialization;
 namespace ProjektMVCPodejscie4.Controllers
 {
     [Authorize]
@@ -16,7 +16,7 @@ namespace ProjektMVCPodejscie4.Controllers
         // GET: /ShoppingCart/
         public ActionResult Index()
         {
-            var cart = ShoppingCart.GetCart(this.HttpContext);
+            ShoppingCart cart = new ShoppingCart();
 
             // Set up our ViewModel
             var viewModel = new ShoppingCartViewModel

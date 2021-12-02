@@ -1,0 +1,36 @@
+﻿@model List<Microsoft.AspNet.Identity.EntityFramework.IdentityRole>
+@{
+    ViewData["Title"] = "Menedżer ról użytkowników";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<h1>Zarządzaj dostępnymi rolami użytkowników</h1>
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    <div class="form-group">
+        <div class="col-md-10">
+            <input id="roleName" name="roleName" class="form-control w-25">
+            <a href="#" onclick="window.location.href='@Url.Action("AddRole", "RoleManager")' + '?roleName=' + $('#roleName').val()">Dodaj rolę</a>
+        </div>
+    </div>
+
+}
+
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Rola</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var role in Model)
+        {
+            <tr>
+                <td>@role.Id</td>
+                <td>@role.Name</td>
+            </tr>
+        }
+    </tbody>
+</table>
