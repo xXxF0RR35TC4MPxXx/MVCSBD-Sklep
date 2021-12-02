@@ -1,9 +1,32 @@
-﻿@{
+﻿@model MVCSBD_Sklep.Models.Product
+@{
     ViewBag.Title = "Home Page";
 }
 
-<div class="jumbotron">
-    <h1>X-moreltronik.com</h1>
-    <p class="lead">Tu będzie więcej rzeczy. Chyba.</p>
+<link href="~/Styling/cards.css" rel="stylesheet" />
+<link href="~/Styling/general.css" rel="stylesheet" />
 
+<div class="jumbotron center-align">
+    <h1>X-moreltronik.com</h1>
 </div>
+
+
+<div class="bottom-align">
+    <div class="heading">
+        <h2>Ostatnio dodane produkty:</h2>
+    </div>
+    <div class="card-container">
+        <div class="card-row">
+            @foreach (var product in ViewBag.Produkty)
+            {
+                <a class="top-product-card" href="/Store/Details/@product.Id">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/b/bd/Test.svg" class="top-product-img" />
+                    @*Tu będzie product.img czy coś ^*@
+                </a>
+            }
+        </div>
+    </div>
+</div>
+    
+
+
