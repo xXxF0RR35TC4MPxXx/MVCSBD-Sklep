@@ -2,8 +2,48 @@
     ViewBag.Title = "Home Page";
 }
 
+<link href="~/Content/cards.css" rel="stylesheet" />
+<link href="~/Content/general.css" rel="stylesheet" />
+
+
 <div class="jumbotron">
     <h1>X-moreltronik.com</h1>
     <p class="lead">Tu będzie więcej rzeczy. Chyba.</p>
+</div>
 
+<div>
+    <div class="heading">
+        <h2>Najczęściej kupowane produkty:</h2>
+    </div>
+    <div class="card-container">
+        <div class="card-row">
+            @foreach (var product in ViewBag.TopSellingProducts)
+            {
+                <p>
+                    <a class="top-product-card" href="/Store/Details/@product.Id">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/b/bd/Test.svg" class="top-product-img" />
+                        @*Tu będzie product.img czy coś ^*@
+                    </a>
+                    Kupiono: @product.OrderCount x
+                </p>
+            }
+        </div>
+    </div>
+</div>
+
+<div>
+    <div class="heading">
+        <h2>Ostatnio dodane produkty:</h2>
+    </div>
+    <div class="card-container">
+        <div class="card-row">
+            @foreach (var product in ViewBag.Produkty)
+            {
+                <a class="top-product-card" href="/Store/Details/@product.Id">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/b/bd/Test.svg" class="top-product-img" />
+                    @*Tu będzie product.img czy coś ^*@
+                </a>
+            }
+        </div>
+    </div>
 </div>

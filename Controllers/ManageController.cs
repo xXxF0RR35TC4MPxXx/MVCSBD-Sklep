@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
@@ -333,7 +334,49 @@ namespace MVCSBD_Sklep.Controllers
             base.Dispose(disposing);
         }
 
-#region Pomocnicy
+
+        public ActionResult MyOrders()
+        {
+            XmoreltronikEntities db = new XmoreltronikEntities();
+            var lista = db.Zamówienia.Where(z => z.Email == User.Identity.Name).ToList();
+            return View(lista);
+        }
+
+        public ActionResult OrderDetails(int id)
+        {
+            XmoreltronikEntities db = new XmoreltronikEntities();
+            
+
+            //jeżeli zamówienie nie należy do mnie to wróć
+            var moje = db.Zamówienia.First(z => z.OrderId == id);
+            if(moje.Email.ToLower() != User.Identity.Name.ToLower())
+            { 
+                return RedirectToAction("MyOrders", "Manage"); 
+            }
+
+            var lista = db.OrderDetails.Where(z => z.OrderId == id).ToList();
+            List<Producent> producentList = new List<Producent>();
+            //ViewBag.Producenci = producentList;
+
+            //<><><><><><><><><><><><><><><><><><><>
+            foreach (var p in lista)
+            {
+                Producent producent = null;
+                Product produkt = db.Products.First(x => x.Id == p.ProduktId); //lista produktów z tego zamówienia
+                if (produkt != null)
+                {
+                    producent = db.Producents.First(x => x.Id == produkt.Producent_Id);
+                }
+                else RedirectToAction("Index", "Home");
+                producentList.Add(producent);
+            }
+            ViewBag.Producenci = producentList;
+            //<><><><><><><><><><><><><><><><><><><>
+
+            return View(lista);
+        }
+
+        #region Pomocnicy
         // Służy do ochrony XSRF podczas dodawania logowań zewnętrznych
         private const string XsrfKey = "XsrfId";
 

@@ -24,6 +24,22 @@ namespace ProjektMVCPodejscie4.Controllers
                 CartItems = cart.GetCartItems(),
                 CartTotal = cart.GetTotal()
             };
+
+            List<Producent> producentList = new List<Producent>();
+            foreach (var p in viewModel.CartItems)
+            {
+                Producent producent = null;
+                Product produkt = storeDB.Products.First(x => x.Id == p.ProduktId); //lista produktów z tego zamówienia
+                if (produkt != null)
+                {
+                    producent = storeDB.Producents.First(x => x.Id == produkt.Producent_Id);
+                }
+                else RedirectToAction("Index", "Home");
+                producentList.Add(producent);
+            }
+            ViewBag.Producenci = producentList;
+
+
             // Return the view
             return View(viewModel);
         }

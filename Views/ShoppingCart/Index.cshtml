@@ -60,7 +60,20 @@
     {
         <tr id="row-@item.RecordId">
             <td>
-                @Html.ActionLink(item.produkt.Name, "Details", "Store", new { id = item.ProduktId }, null)
+                <a href="@Url.Action("Details", "Store", new { id = item.ProduktId }, Request.Url.Scheme)">
+                    <span>
+                        @foreach (var prod in ViewBag.Producenci)
+                        {
+                            if (prod.Id == item.produkt.Producent_Id)
+                            {
+                                <span>@prod.Name </span>
+                                break;
+                            }
+
+                        }
+                        @item.produkt.Name
+                    </span>
+                </a>
             </td>
             <td>
                 @item.produkt.Cena  PLN
