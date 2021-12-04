@@ -4,9 +4,6 @@
     ViewBag.Title = "Address And Payment";
 }
 
-<h2>Adres i płatność</h2>
-
-
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
@@ -76,16 +73,17 @@
         <div class="form-group">
             @Html.LabelFor(model => model.paymentTypeId, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.ValidationMessageFor(model => model.paymentTypeId, "", new { @class = "text-danger" })
                 @Html.DropDownListFor(m => m.paymentTypeId, ViewBag.PaymentTypes as SelectList, "--Wybierz metodę płatności--")
+                @Html.ValidationMessageFor(model => model.paymentTypeId, "", new { @class = "text-danger" })
             </div>
         </div>
 
         <div class="form-group">
             @Html.LabelFor(model => model.deliveryTypeId, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.ValidationMessageFor(model => model.deliveryTypeId, "", new { @class = "text-danger" })
+
                 @Html.DropDownListFor(m => m.deliveryTypeId, ViewBag.DeliveryTypes as SelectList, "--Wybierz sposób dostawy--")
+                @Html.ValidationMessageFor(model => model.deliveryTypeId, "", new { @class = "text-danger" })
             </div>
         </div>
 

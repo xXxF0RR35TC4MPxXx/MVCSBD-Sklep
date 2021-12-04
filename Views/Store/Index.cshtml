@@ -3,13 +3,31 @@
 @{
     ViewBag.Title = "Lista kategorii";
 }
-<h3>Dostępne kategorie produktów</h3>
-<p>
-    Wybierz spośród @Model.Count() kategorii:
-</p>
-<ul>
+
+<link href="~/Styling/cards.css" rel="stylesheet" />
+<link href="~/Styling/general.css" rel="stylesheet" />
+
+<div class="heading">
+    <h2>Dostępne kategorie produktów</h2>
+    <div>
+        Wybierz spośród @Model.Count() kategorii:
+    </div>
+</div>
+
+@*<ul>
     @foreach (var category in Model)
     {
         <li>@Html.ActionLink(category.Name, "Browse", new { kategoria = category.Name })</li>
     }
-</ul>
+</ul>*@
+
+<div class="card-container">
+    <div class="card-grid">
+        @foreach(var category in Model)
+            {
+            <div class="category-card">
+                <div class="category-name">@Html.ActionLink(category.Name, "Browse", new { kategoria = category.Name })</div>
+            </div>
+            }
+    </div>
+</div>

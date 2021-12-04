@@ -1,0 +1,15 @@
+﻿.footer-bottom {
+    position: fixed;
+    text-align: left;
+    bottom: 0;
+    width: 100%;
+    background: rgb(46, 46, 46);
+    color: white;
+    padding-left: 1%;
+    padding-top: 0.5em;
+    padding-bottom: 0.5em;
+}
+
+.footer-text {
+    color:white;
+}
