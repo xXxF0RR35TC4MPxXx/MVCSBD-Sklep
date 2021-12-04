@@ -1,12 +1,13 @@
-﻿@model IEnumerable<MVCSBD_Sklep.Models.Kategoria>
+@model IEnumerable<MVCSBD_Sklep.Models.Kategoria>
 
 @{
     ViewBag.Title = "Lista kategorii";
 }
 
-<link href="~/Styling/cards.css" rel="stylesheet" />
-<link href="~/Styling/general.css" rel="stylesheet" />
+<link href="~/Content/cards.css" rel="stylesheet" />
+<link href="~/Content/general.css" rel="stylesheet" />
 
+<link rel="stylesheet" href="~/Content/font-awesome/css/all.css">
 <div class="heading">
     <h2>Dostępne kategorie produktów</h2>
     <div>
@@ -15,19 +16,24 @@
 </div>
 
 @*<ul>
-    @foreach (var category in Model)
-    {
-        <li>@Html.ActionLink(category.Name, "Browse", new { kategoria = category.Name })</li>
-    }
-</ul>*@
+        @foreach (var category in Model)
+        {
+            <li>@Html.ActionLink(category.Name, "Browse", new { kategoria = category.Name })</li>
+        }
+    </ul>*@
 
 <div class="card-container">
-    <div class="card-grid">
-        @foreach(var category in Model)
-            {
-            <div class="category-card">
-                <div class="category-name">@Html.ActionLink(category.Name, "Browse", new { kategoria = category.Name })</div>
-            </div>
-            }
+    <div class="card-grid" style="text-align: center;">
+        @foreach (var category in Model)
+        {   <a href="./Browse?kategoria=@category.Name" style="color:dimgrey;">
+                <div class="category-card">
+                    <i style="font-size: 4.73em; height:50px; text-align:center; margin-left:auto; margin-right:auto;" class="@category.IconClassName"></i>
+                    <br /><br />
+                      <div class="category-name">
+                          @category.Name
+                      </div>
+                </div>
+            </a>
+        }
     </div>
 </div>
