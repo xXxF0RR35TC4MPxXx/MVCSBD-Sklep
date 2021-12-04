@@ -15,6 +15,9 @@
             Ilość:
         </th>
         <th>
+            Cena jednostkowa:
+        </th>
+        <th>
             Łączna cena:
         </th>
         <th></th>
@@ -25,7 +28,7 @@
         <tr>
             <td>
                 <p>
-                     <a href="@Url.Action("Details", "Store", new { id = item.ProduktId }, Request.Url.Scheme)">
+                    <a href="@Url.Action("Details", "Store", new { id = item.ProduktId }, Request.Url.Scheme)">
                         <span>
                             @foreach (var prod in ViewBag.Producenci)
                             {
@@ -47,8 +50,13 @@
             <td>
                 @Html.DisplayFor(modelItem => item.UnitPrice) PLN
             </td>
+            @{decimal sum = item.UnitPrice * item.Quantity; }
+
+            <td>
+                @sum PLN
+            </td>
         </tr>
     }
-
+    
 </table>
 @Html.ActionLink("Wróć do listy", "MyOrders", "Manage")

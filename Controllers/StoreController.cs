@@ -8,6 +8,8 @@ using System.Web;
 using System.Web.Mvc;
 using MVCSBD_Sklep.Models;
 using Rotativa;
+using System.IO;
+
 namespace MVCSBD_Sklep.Controllers
 {
     public class StoreController : Controller
@@ -59,6 +61,7 @@ namespace MVCSBD_Sklep.Controllers
         }
         public ActionResult Details(int id)
         {
+            
             var produkt = storeDB.Products.Find(id);
 
             //ViewBag.Producent = storeDB.Producents.Find(produkt.producent.Id).Name;
@@ -104,6 +107,33 @@ namespace MVCSBD_Sklep.Controllers
                 connection.Close();
             }
             return View(produkt);
+        }
+
+        [HttpPost]
+        public ActionResult UploadFile(int id, HttpPostedFileBase file)
+        {
+            try
+            {
+                if (file !=null && file.ContentLength > 0)
+                {
+                    string strMappath = Server.MapPath("~/UploadedFiles/" + id + "/");
+
+                    string _FileName = Path.GetFileName(file.FileName);
+                    if (!Directory.Exists(strMappath))
+                    {
+                        DirectoryInfo di = Directory.CreateDirectory(strMappath);
+                    }
+                    string _path = Path.Combine(strMappath, _FileName);
+                    file.SaveAs(_path);
+                }
+                ViewBag.Message = "File Uploaded Successfully!!";
+                return RedirectToAction("Details/" + id);
+            }
+            catch
+            {
+                ViewBag.Message = "File upload failed!!";
+                return RedirectToAction("Details/" + id);
+            }
         }
 
     }

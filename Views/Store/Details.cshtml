@@ -12,13 +12,18 @@
     <tr>
         <td align="left" width="50%"><h2>@ViewBag.Producent @Model.Name</h2></td>
         @if (User.Identity.IsAuthenticated)
-        {<td width="20%"><p class="button">@Html.ActionLink("Dodaj do koszyka", "AddToCart", "ShoppingCart", new { id = Model.Id }, "")
-</p></td>}
+        {
+            <td width="20%">
+                <p class="button">
+                    @Html.ActionLink("Dodaj do koszyka", "AddToCart", "ShoppingCart", new { id = Model.Id }, "")
+                </p>
+            </td>
+        }
         <td align="right" width="30%" style="color:red"><h2>@Model.Cena PLN </h2></td>
-    </tr>    
+    </tr>
 </table>
 
-    
+
 <table width="100%">
     <tr><td>@Html.ActionLink("Powrót do listy produktów", "Browse", new { kategoria = ViewBag.Kategoria })</td></tr>
     <tr><td>&nbsp;</td></tr>
@@ -97,5 +102,31 @@
         <tr><td>&nbsp;</td></tr>
     }
 </table>
-    
 
+@if(Directory.Exists(Server.MapPath("~/UploadedFiles/" + Model.Id + "/")))
+{
+    string link = "/UploadedFiles/" + Model.Id + "/";
+    if (Directory.EnumerateFileSystemEntries(Server.MapPath("~/UploadedFiles/" + Model.Id + "/")).Any())
+    {
+        var files = Directory.GetFiles(Server.MapPath("~/UploadedFiles/" + Model.Id + "/")).Select(f => new { FileName = Path.GetFileName(f) });
+        foreach(var s in files)
+        {
+            string link2 = link + s.FileName;
+                <a href=@link2>@s.FileName</a><br/>
+            }
+    }
+}
+
+
+@if (User.IsInRole("Admin"))
+{
+    using (Html.BeginForm("UploadFile", "Store", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+        <div>
+            @Html.HiddenFor(model => model.Id)
+            @Html.TextBox("file", "", new { type = "file" }) <br />
+            <input type="submit" value="Dodaj plik" />
+            @ViewBag.Message
+        </div>
+    }
+}

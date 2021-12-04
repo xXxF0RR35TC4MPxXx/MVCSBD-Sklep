@@ -339,6 +339,9 @@ namespace MVCSBD_Sklep.Controllers
         {
             XmoreltronikEntities db = new XmoreltronikEntities();
             var lista = db.Zamówienia.Where(z => z.Email == User.Identity.Name).ToList();
+
+            
+
             return View(lista);
         }
 
@@ -372,6 +375,14 @@ namespace MVCSBD_Sklep.Controllers
             }
             ViewBag.Producenci = producentList;
             //<><><><><><><><><><><><><><><><><><><>
+
+            List<decimal> listakosztów = new List<decimal>();
+
+            foreach (var z in lista)
+            {
+                listakosztów.Add((decimal)z.UnitPrice * z.Quantity);
+            }
+            ViewBag.ListaKosztów = listakosztów;
 
             return View(lista);
         }
