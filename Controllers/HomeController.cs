@@ -12,8 +12,12 @@ namespace MVCSBD_Sklep.Controllers
         XmoreltronikEntities storeDB = new XmoreltronikEntities();
         public ActionResult Index()
         {
+            var topSellingProdukty = storeDB.Products.OrderByDescending(d => d.OrderCount).Take(10).ToList();
+            ViewBag.TopSellingProducts = topSellingProdukty;
+
             var topProdukty = storeDB.Products.OrderByDescending(d => d.ReleaseDate).Take(10).ToList();
             ViewBag.Produkty = topProdukty;
+
             return View();
         }
 

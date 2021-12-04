@@ -95,6 +95,16 @@ namespace MVCSBD_Sklep.Controllers
                 Zamówienie xd = storeDB.Zamówienia.FirstOrDefault(
                 o => o.OrderId == id &&
                 o.Username == User.Identity.Name);
+
+                List<SzczegółyZamówienia> details = new List<SzczegółyZamówienia>(); //nowa lista szczegółów dodawanego zamówienia
+                details = storeDB.OrderDetails.Where(o => o.OrderId == xd.OrderId).ToList();
+                foreach(SzczegółyZamówienia x in details) //przechodzę po konkretnych pozycjach z danego zamówienia
+                {
+                    Product tempProd = storeDB.Products.First(p => p.Id == x.ProduktId); //do każdego zamawianego produktu
+                    tempProd.OrderCount += x.Quantity; //dopisuję zamówioną ilość
+                    storeDB.SaveChanges();
+                }
+
                 return View(xd);
             }
             else

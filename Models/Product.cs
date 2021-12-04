@@ -60,5 +60,9 @@ namespace MVCSBD_Sklep.Models
 
         [Display(Name = "Pliki dodatkowe: ")]
         public virtual ICollection<ExtraFile> PlikiDodatkowe { get; set; }
+
+        public int OrderCount { get; set; } = 0;
+
+
     }
 }

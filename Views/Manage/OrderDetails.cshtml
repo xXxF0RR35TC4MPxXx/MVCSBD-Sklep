@@ -1,0 +1,54 @@
+﻿@model IEnumerable<MVCSBD_Sklep.Models.SzczegółyZamówienia>
+
+@{
+    ViewBag.Title = "OrderDetails";
+}
+
+<h2>Szczegóły zamówienia</h2>
+
+<table class="table">
+    <tr>
+        <th>
+            Produkt:
+        </th>
+        <th>
+            Ilość:
+        </th>
+        <th>
+            Łączna cena:
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                <p>
+                     <a href="@Url.Action("Details", "Store", new { id = item.ProduktId }, Request.Url.Scheme)">
+                        <span>
+                            @foreach (var prod in ViewBag.Producenci)
+                            {
+                                if (prod.Id == item.produkt.Producent_Id)
+                                {
+                                    <span>@prod.Name </span>
+                                    break;
+                                }
+
+                            }
+                            @item.produkt.Name
+                        </span>
+                    </a>
+                </p>
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Quantity)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.UnitPrice) PLN
+            </td>
+        </tr>
+    }
+
+</table>
+@Html.ActionLink("Wróć do listy", "MyOrders", "Manage")

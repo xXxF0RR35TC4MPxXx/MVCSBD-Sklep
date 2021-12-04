@@ -25,6 +25,26 @@ namespace MVCSBD_Sklep.Controllers
         {
             var kategoriaModel = storeDB.Categories.Include("Products")
         .Single(g => g.Name == kategoria);
+
+            List<Producent> producentList = new List<Producent>();
+            //ViewBag.Producenci = producentList;
+
+            //<><><><><><><><><><><><><><><><><><><>
+            foreach (var p in kategoriaModel.Products)
+            {
+                Producent producent = null;
+                Product produkt = storeDB.Products.First(x => x.Id == p.Id); //lista produktów z tego zamówienia
+                if (produkt != null)
+                {
+                    producent = storeDB.Producents.First(x => x.Id == produkt.Producent_Id);
+                }
+                else RedirectToAction("Index", "Home");
+                producentList.Add(producent);
+            }
+            ViewBag.Producenci = producentList;
+
+
+
             return View(kategoriaModel);
         }
 
