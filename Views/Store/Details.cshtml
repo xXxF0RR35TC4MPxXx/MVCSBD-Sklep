@@ -5,23 +5,34 @@
 
 
 }
+<link href="~/Content/cards.css" rel="stylesheet" />
+<link href="~/Content/general.css" rel="stylesheet" />
 
-
+<div>
+    @Html.ActionLink("Powrót do listy produktów", "Browse", new { kategoria = ViewBag.Kategoria })
+</div>
 
 <table width="100%">
     <tr>
         <td align="left" width="50%"><h2>@ViewBag.Producent @Model.Name</h2></td>
         @if (User.Identity.IsAuthenticated)
-        {<td width="20%"><p class="button">@Html.ActionLink("Dodaj do koszyka", "AddToCart", "ShoppingCart", new { id = Model.Id }, "")
-</p></td>}
+        {
+            <td width="20%">
+                <a style="text-decoration:none; color:white;" class="CustomBtn2" href="/ShoppingCart/AddToCart/@Model.Id">Dodaj do <i class="fas fa-shopping-cart"></i></a>
+            </td>
+        }
         <td align="right" width="30%" style="color:red"><h2>@Model.Cena PLN </h2></td>
-    </tr>    
+    </tr>
 </table>
 
-    
-<table width="100%">
-    <tr><td>@Html.ActionLink("Powrót do listy produktów", "Browse", new { kategoria = ViewBag.Kategoria })</td></tr>
-    <tr><td>&nbsp;</td></tr>
+<div>
+    <img src="https://upload.wikimedia.org/wikipedia/commons/b/bd/Test.svg" class="product-img"/>
+    @*Tu będzie Model.Img/Product.Img*@
+
+    <p><h4>Opis: </h4>@Html.Raw(Model.Description)</p>
+</div>
+
+<table width="30%" >
     <tr><td>&nbsp;</td></tr>
     <tr>
         <td><b>@Html.DisplayNameFor(Model => Model.Kategoria_Id)</b></td>
@@ -36,11 +47,6 @@
     <tr>
         <td><b>@Html.DisplayNameFor(Model => Model.Name)</b></td>
         <td>@Model.Name</td>
-    </tr>
-    <tr><td>&nbsp;</td></tr>
-    <tr>
-        <td><b>@Html.DisplayNameFor(Model => Model.Description)</b></td>
-        <td>@Html.Raw(Model.Description)</td>
     </tr>
     <tr><td>&nbsp;</td></tr>
     <tr>
@@ -97,5 +103,5 @@
         <tr><td>&nbsp;</td></tr>
     }
 </table>
-    
+
 

@@ -20,6 +20,8 @@
     position: relative;
     background-color: rgb(242, 242, 242);
     border-radius: 10px;
+    max-width:100px;
+    max-height:100px;
     text-decoration: none;
     z-index: 0;
     overflow: hidden;
@@ -74,7 +76,6 @@
     font-size: 20px;
     font-weight: 700;
     text-align: center;
-    top: 75px;
 }
 
 h3 {
@@ -118,7 +119,6 @@ p {
 .card-row {
     display: grid;
     grid-template-columns: repeat(5, 1fr);
-    grid-column-gap: 10px;
     justify-content: center;
     grid-gap: 10px;
 }
@@ -158,14 +158,15 @@ p {
     }
 }
 
-.product-img {
+.mini-product-img {
     justify-content: center;
-    height: 100px;
-    width: 100px;
+    max-height: 100px;
+    max-width: 100px;
+    object-fit: contain;
 }
 
-.top-product-img {
+.product-img {
     justify-content: center;
-    height: 100px;
-    width: 100px;
+    max-width: 300px;
+    object-fit: contain;
 }

@@ -14,20 +14,13 @@
     </div>
 </div>
 
-@*<ul>
-    @foreach (var category in Model)
-    {
-        <li>@Html.ActionLink(category.Name, "Browse", new { kategoria = category.Name })</li>
-    }
-</ul>*@
-
 <div class="card-container">
     <div class="card-grid">
-        @foreach(var category in Model)
-            {
-            <div class="category-card">
-                <div class="category-name">@Html.ActionLink(category.Name, "Browse", new { kategoria = category.Name })</div>
-            </div>
-            }
+        @foreach (var category in Model)
+        {
+        <div class="category-card">
+            <div class="category-name">@Html.ActionLink(category.Name, "Browse", new { kategoria = category.Name })</div>
+        </div>
+        }
     </div>
 </div>
