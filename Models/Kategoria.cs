@@ -12,6 +12,8 @@ namespace MVCSBD_Sklep.Models
         [Required(ErrorMessage ="Pole jest wymagane!")]
         public int Id { get; set; }
         public string Name { get; set; }
+
+        public string IconClassName { get; set; }
         public List<Product> Products { get; set; }
     }
 }

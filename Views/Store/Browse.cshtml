@@ -1,39 +1,51 @@
 ﻿@model MVCSBD_Sklep.Models.Kategoria
 
-@{
+@{ 
     ViewBag.Title = "Browse";
-    ViewBag.Kategoria = Model.Name;
-
+    ViewBag.Kategoria = Model.Name; 
 }
 
+<link href="~/Content/cards.css" rel="stylesheet" />
+<link href="~/Content/general.css" rel="stylesheet" />
 
-<h2>Produkty z kategorii: @Model.Name</h2>
-@Html.ActionLink("Powrót do strony głównej", "")
-<div style="text-align:left">@Html.ActionLink("Generuj cennik PDF", "ProductsToPDF", new { name = Model.Name})</div>
-
-<p>&nbsp;</p>
-<table class="table">
-    @foreach (var product in Model.Products)
-    {
-        <tr>
-            <td style="text-align:left; font-size: 15px; font-weight: bold;">
-                <a href="@Url.Action("Details", new { id = product.Id })">
-                    <span>
-                        @foreach (var prod in ViewBag.Producenci)
+<div>
+    @Html.ActionLink("Powrót do strony głównej", "")
+</div>
+<div class="heading">
+    <h2>Produkty z kategorii: @Model.Name</h2>
+    <div>@Html.ActionLink("Generuj cennik PDF", "ProductsToPDF", new { name = Model.Name })</div>
+</div>
+<div class="card-container">
+    <div class="card-grid">
+        @foreach (var product in Model.Products)
+        {
+            <a class="product-card col-xs-10" href="/Store/Details/@product.Id">
+                @{ if (Directory.Exists(Server.MapPath("~/UploadedPhotos/" + product.Id + "/")))
+                    {
+                        string link = "/UploadedPhotos/" + product.Id + "/";
+                        if (Directory.EnumerateFileSystemEntries(Server.MapPath("~/UploadedPhotos/" + product.Id + "/")).Any())
                         {
-                            if (prod.Id == product.Producent_Id)
-                            {
-                                <span>@prod.Name </span>
-                                break;
-                            }
-
+                            var files = Directory.GetFiles(Server.MapPath("~/UploadedPhotos/" + product.Id + "/")).Select(f => new { FileName = Path.GetFileName(f) });
+                            <img class="mini-product-img2" src="@Url.Action("FileDownload",new { path = Server.MapPath("~/UploadedPhotos/" + product.Id + "/" + files.First().FileName.Replace(" ", "%20"))})" alt="@files.First().FileName" /> }
+                        else
+                        { <img src="https://upload.wikimedia.org/wikipedia/commons/b/bd/Test.svg" class="mini-product-img2" /> @*Tu będzie Model.Img/Product.Img*@}
+                } }
+                <h3>
+                    @foreach (var prod in ViewBag.Producenci)
+                    {
+                        if (prod.Id == product.Producent_Id)
+                        {
+                            <span>@prod.Name </span><br/>
+                            break;
                         }
-                        @product.Name
-                    </span>
-                </a>
-            <td style="color:red; text-align:right; padding-left: 20px;">@product.Cena PLN</td>
-        </tr>
-    }
 
-</table>
+                    }
+                    @product.Name
+                </h3>
+                <p class="small">@product.Cena PLN</p>
+            </a>
+         }
+    </div>
+</div>
+
 

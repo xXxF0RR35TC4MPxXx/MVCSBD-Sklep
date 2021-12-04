@@ -220,6 +220,10 @@
     <Compile Include="Migrations\XmoreltronikEntities\202112032009594_OrderCount.Designer.cs">
       <DependentUpon>202112032009594_OrderCount.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\XmoreltronikEntities\202112041918486_KategoriaIcon.cs" />
+    <Compile Include="Migrations\XmoreltronikEntities\202112041918486_KategoriaIcon.Designer.cs">
+      <DependentUpon>202112041918486_KategoriaIcon.cs</DependentUpon>
+    </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Color.cs" />
     <Compile Include="Models\Country.cs" />
@@ -254,16 +258,62 @@
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\cards.css" />
+    <Content Include="Content\font-awesome\css\all.css" />
+    <Content Include="Content\font-awesome\css\all.min.css" />
+    <Content Include="Content\font-awesome\css\brands.css" />
+    <Content Include="Content\font-awesome\css\brands.min.css" />
+    <Content Include="Content\font-awesome\css\fontawesome.css" />
+    <Content Include="Content\font-awesome\css\fontawesome.min.css" />
+    <Content Include="Content\font-awesome\css\regular.css" />
+    <Content Include="Content\font-awesome\css\regular.min.css" />
+    <Content Include="Content\font-awesome\css\solid.css" />
+    <Content Include="Content\font-awesome\css\solid.min.css" />
+    <Content Include="Content\font-awesome\css\svg-with-js.css" />
+    <Content Include="Content\font-awesome\css\svg-with-js.min.css" />
+    <Content Include="Content\font-awesome\css\v4-shims.css" />
+    <Content Include="Content\font-awesome\css\v4-shims.min.css" />
+    <Content Include="Content\font-awesome\js\all.js" />
+    <Content Include="Content\font-awesome\js\all.min.js" />
+    <Content Include="Content\font-awesome\js\brands.js" />
+    <Content Include="Content\font-awesome\js\brands.min.js" />
+    <Content Include="Content\font-awesome\js\conflict-detection.js" />
+    <Content Include="Content\font-awesome\js\conflict-detection.min.js" />
+    <Content Include="Content\font-awesome\js\fontawesome.js" />
+    <Content Include="Content\font-awesome\js\fontawesome.min.js" />
+    <Content Include="Content\font-awesome\js\regular.js" />
+    <Content Include="Content\font-awesome\js\regular.min.js" />
+    <Content Include="Content\font-awesome\js\solid.js" />
+    <Content Include="Content\font-awesome\js\solid.min.js" />
+    <Content Include="Content\font-awesome\js\v4-shims.js" />
+    <Content Include="Content\font-awesome\js\v4-shims.min.js" />
+    <Content Include="Content\font-awesome\sprites\brands.svg" />
+    <Content Include="Content\font-awesome\sprites\regular.svg" />
+    <Content Include="Content\font-awesome\sprites\solid.svg" />
+    <Content Include="Content\font-awesome\webfonts\fa-brands-400.svg" />
+    <Content Include="Content\font-awesome\webfonts\fa-regular-400.svg" />
+    <Content Include="Content\font-awesome\webfonts\fa-solid-900.svg" />
     <Content Include="Content\footer.css" />
     <Content Include="Content\general.css" />
+    <Content Include="Content\Site.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
-    <Content Include="Content\Site.css" />
     <Content Include="Rotativa\wkhtmltopdf.exe" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="App_Browsers\qt.browser" />
+    <Content Include="Content\font-awesome\webfonts\fa-brands-400.eot" />
+    <Content Include="Content\font-awesome\webfonts\fa-brands-400.ttf" />
+    <Content Include="Content\font-awesome\webfonts\fa-brands-400.woff" />
+    <Content Include="Content\font-awesome\webfonts\fa-brands-400.woff2" />
+    <Content Include="Content\font-awesome\webfonts\fa-regular-400.eot" />
+    <Content Include="Content\font-awesome\webfonts\fa-regular-400.ttf" />
+    <Content Include="Content\font-awesome\webfonts\fa-regular-400.woff" />
+    <Content Include="Content\font-awesome\webfonts\fa-regular-400.woff2" />
+    <Content Include="Content\font-awesome\webfonts\fa-solid-900.eot" />
+    <Content Include="Content\font-awesome\webfonts\fa-solid-900.ttf" />
+    <Content Include="Content\font-awesome\webfonts\fa-solid-900.woff" />
+    <Content Include="Content\font-awesome\webfonts\fa-solid-900.woff2" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -275,9 +325,6 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
-    <Content Include="Styling\cards.css" />
-    <Content Include="Styling\footer.css" />
-    <Content Include="Styling\general.css" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -407,6 +454,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\XmoreltronikEntities\202112032009594_OrderCount.resx">
       <DependentUpon>202112032009594_OrderCount.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\XmoreltronikEntities\202112041918486_KategoriaIcon.resx">
+      <DependentUpon>202112041918486_KategoriaIcon.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

@@ -112,12 +112,27 @@ namespace MVCSBD_Sklep.Controllers
         [HttpPost]
         public ActionResult UploadFile(int id, HttpPostedFileBase file)
         {
+
+            
             try
             {
                 if (file !=null && file.ContentLength > 0)
                 {
-                    string strMappath = Server.MapPath("~/UploadedFiles/" + id + "/");
-
+                    string strMappath = null;
+                    string extension = Path.GetExtension(file.FileName);
+                    if (extension == ".pdf" || extension == ".docx" || extension == ".odt" || extension == ".doc")
+                    { 
+                        strMappath = Server.MapPath("~/UploadedFiles/" + id + "/"); 
+                    }
+                    else if (extension == ".jpg" || extension == ".png" || extension == ".svg" || extension == ".jpeg" || extension == ".webp")
+                    {
+                        strMappath = Server.MapPath("~/UploadedPhotos/" + id + "/");
+                    }
+                    else
+                    {
+                        ViewBag.Message = "Nieobsługiwane rozszerzenie pliku!";
+                        return RedirectToAction("Details/" + id);
+                    }
                     string _FileName = Path.GetFileName(file.FileName);
                     if (!Directory.Exists(strMappath))
                     {
@@ -135,6 +150,9 @@ namespace MVCSBD_Sklep.Controllers
                 return RedirectToAction("Details/" + id);
             }
         }
-
+        public FileResult FileDownload(string path)
+        {
+            return new FileStreamResult(new FileStream(path, FileMode.Open), "image");
+        }
     }
 }

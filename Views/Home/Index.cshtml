@@ -1,6 +1,5 @@
-﻿@{
-    ViewBag.Title = "Home Page";
-}
+﻿@model MVCSBD_Sklep.Models.Product
+@{ ViewBag.Title = "Home Page"; }
 
 <link href="~/Content/cards.css" rel="stylesheet" />
 <link href="~/Content/general.css" rel="stylesheet" />
@@ -17,16 +16,30 @@
     </div>
     <div class="card-container">
         <div class="card-row">
-            @foreach (var product in ViewBag.TopSellingProducts)
+            @foreach (MVCSBD_Sklep.Models.Product product in ViewBag.TopSellingProducts)
             {
                 <p>
                     <a class="top-product-card" href="/Store/Details/@product.Id">
-                        <img src="https://upload.wikimedia.org/wikipedia/commons/b/bd/Test.svg" class="top-product-img" />
-                        @*Tu będzie product.img czy coś ^*@
+                        @{
+                            if (Directory.Exists(Server.MapPath("~/UploadedPhotos/" + product.Id + "/")))
+                            {
+                                string link = "/UploadedPhotos/" + product.Id + "/";
+                                if (Directory.EnumerateFileSystemEntries(Server.MapPath("~/UploadedPhotos/" + product.Id + "/")).Any())
+                                {
+                                    IEnumerable<dynamic> files = Directory.GetFiles(Server.MapPath("~/UploadedPhotos/" + product.Id + "/"));
+                                    files = files.Select(f => new { FileName = Path.GetFileName(f) });
+                                    <img class="mini-product-img" src="@Url.Action("FileDownload", new { path = Server.MapPath("~/UploadedPhotos/" + product.Id + "/" + files.First().FileName.Replace(" ", "%20")) })" alt="@files.First().FileName" /> 
+                                }
+                            }
+                            else
+                            {
+                                <img src="https://upload.wikimedia.org/wikipedia/commons/b/bd/Test.svg" class="mini-product-img" /> @*Tu będzie Model.Img/Product.Img*@
+                            }
+                        }
                     </a>
-                    Kupiono: @product.OrderCount x
-                </p>
-            }
+                    Kupiono: @product.OrderCount X
+                </p>            
+             }
         </div>
     </div>
 </div>
@@ -37,13 +50,27 @@
     </div>
     <div class="card-container">
         <div class="card-row">
-            @foreach (var product in ViewBag.Produkty)
+            @foreach (MVCSBD_Sklep.Models.Product product in ViewBag.Produkty)
             {
                 <a class="top-product-card" href="/Store/Details/@product.Id">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/b/bd/Test.svg" class="top-product-img" />
-                    @*Tu będzie product.img czy coś ^*@
-                </a>
-            }
+                        @{
+                            if (Directory.Exists(Server.MapPath("~/UploadedPhotos/" + product.Id + "/")))
+                            {
+                                string link = "/UploadedPhotos/" + product.Id + "/";
+                                if (Directory.EnumerateFileSystemEntries(Server.MapPath("~/UploadedPhotos/" + product.Id + "/")).Any())
+                                {
+                                    IEnumerable<dynamic> files = Directory.GetFiles(Server.MapPath("~/UploadedPhotos/" + product.Id + "/"));
+                                    files = files.Select(f => new { FileName = Path.GetFileName(f) });
+                                    <img class="mini-product-img" src="@Url.Action("FileDownload", new { path = Server.MapPath("~/UploadedPhotos/" + product.Id + "/" + files.First().FileName.Replace(" ", "%20")) })" alt="@files.First().FileName" /> 
+                                }
+                            }
+                            else
+                            {
+                                <img src="https://upload.wikimedia.org/wikipedia/commons/b/bd/Test.svg" class="mini-product-img" /> @*Tu będzie Model.Img/Product.Img*@
+                            }
+                        }
+                    </a>
+             }
         </div>
     </div>
 </div>

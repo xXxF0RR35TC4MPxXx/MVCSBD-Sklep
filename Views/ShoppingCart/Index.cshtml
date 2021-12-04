@@ -1,8 +1,6 @@
 ﻿@model MVCSBD_Sklep.ViewModels.ShoppingCartViewModel
 
-@{
-    ViewBag.Title = "Koszyk";
-}
+@{ ViewBag.Title = "Koszyk"; }
 
 
 <script src="~/Scripts/jquery-3.4.1.min.js"
@@ -58,37 +56,35 @@
     </tr>
     @foreach (var item in Model.CartItems)
     {
-        <tr id="row-@item.RecordId">
-            <td>
-                <a href="@Url.Action("Details", "Store", new { id = item.ProduktId }, Request.Url.Scheme)">
-                    <span>
-                        @foreach (var prod in ViewBag.Producenci)
-                        {
-                            if (prod.Id == item.produkt.Producent_Id)
-                            {
-                                <span>@prod.Name </span>
-                                break;
-                            }
-
-                        }
-                        @item.produkt.Name
-                    </span>
-                </a>
-            </td>
-            <td>
-                @item.produkt.Cena  PLN
-            </td>
-            <td id="item-count-@item.RecordId">
-                @item.Count
-            </td>
-            <td>
-                <a href="#" class="RemoveLink"
-                   data-id="@item.RecordId">
-                    Usuń z koszyka
-                </a>
-            </td>
-        </tr>
-    }
+<tr id="row-@item.RecordId">
+    <td>
+        <a href="@Url.Action("Details", "Store", new { id = item.ProduktId }, Request.Url.Scheme)">
+            <span>
+                @foreach (var prod in ViewBag.Producenci)
+                {
+                    if (prod.Id == item.produkt.Producent_Id)
+                    {
+                        <span>@prod.Name </span>break;
+                    }
+                }
+                @item.produkt.Name
+            </span>
+        </a>
+    </td>
+    <td>
+        @item.produkt.Cena  PLN
+    </td>
+    <td id="item-count-@item.RecordId">
+        @item.Count
+    </td>
+    <td>
+        <a href="#" class="RemoveLink" style="color:red"
+           data-id="@item.RecordId">
+            <i></i>
+            Usuń z koszyka
+        </a>
+    </td>
+</tr>}
     <tr>
         <td>&nbsp;</td>
     </tr>
@@ -112,7 +108,6 @@
 
 @if (Model.CartItems.Count > 0)
 {
-    <p id="button">
-        <span id="span" style="background-color:yellow"><b>@Html.ActionLink("Przejdź do realizacji zamówienia>> ", "AddressAndPayment", "Checkout")</b></span>
-    </p>
-}
+<p id="button">
+    <span id="span" style="background-color:yellow"><b>@Html.ActionLink("Przejdź do realizacji zamówienia>> ", "AddressAndPayment", "Checkout")</b></span>
+</p>}

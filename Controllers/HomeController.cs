@@ -1,6 +1,7 @@
 ﻿using MVCSBD_Sklep.Models;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -12,6 +13,11 @@ namespace MVCSBD_Sklep.Controllers
         XmoreltronikEntities storeDB = new XmoreltronikEntities();
         public ActionResult Index()
         {
+            List<Product> topSellingProdukty = storeDB.Products.OrderByDescending(d => d.OrderCount).Take(10).ToList();
+            ViewBag.TopSellingProducts = topSellingProdukty;
+
+            List<Product> topProdukty = storeDB.Products.OrderByDescending(d => d.ReleaseDate).Take(10).ToList();
+            ViewBag.Produkty = topProdukty;
             return View();
         }
 
@@ -27,6 +33,11 @@ namespace MVCSBD_Sklep.Controllers
             ViewBag.Message = "Your contact page.";
 
             return View();
+        }
+
+        public FileResult FileDownload(string path)
+        {
+            return new FileStreamResult(new FileStream(path, FileMode.Open), "image");
         }
     }
 }
