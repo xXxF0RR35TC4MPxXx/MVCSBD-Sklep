@@ -63,6 +63,7 @@ namespace MVCSBD_Sklep.Controllers
         {
             
             var produkt = storeDB.Products.Find(id);
+            var KatName = storeDB.Categories.First(i => i.Id == produkt.Kategoria_Id).Name;
 
             //ViewBag.Producent = storeDB.Producents.Find(produkt.producent.Id).Name;
             using (SqlConnection connection = new SqlConnection(ConfigurationManager.ConnectionStrings["ShopConnection"].ConnectionString))
@@ -86,23 +87,26 @@ namespace MVCSBD_Sklep.Controllers
                     command2.Parameters["@idproduktu"].Value = produkt.Id;
                     ViewBag.Kategoria = command2.ExecuteScalar().ToString();
                 }
-                using (SqlCommand command3 = new SqlCommand(commandText3, connection))
+                if (!KatName.ToLower().Contains("gry")) 
                 {
-                    command3.Parameters.Add("@idproduktu", SqlDbType.Int);
-                    command3.Parameters["@idproduktu"].Value = produkt.Id;
-                    ViewBag.Kolor = command3.ExecuteScalar().ToString();
-                    //Console.WriteLine("ViewBag.Kolor = " + ViewBag.Kolor);
-                }
-                using (SqlCommand command4 = new SqlCommand(commandText4, connection))
-                {
-                    command4.Parameters.Add("@idproduktu", SqlDbType.Int);
-                    command4.Parameters["@idproduktu"].Value = produkt.Id;
-                    try
+                    using (SqlCommand command3 = new SqlCommand(commandText3, connection))
                     {
-                        ViewBag.SwitchType = command4.ExecuteScalar().ToString();
-                    }catch(NullReferenceException) { connection.Close(); return View(produkt); }
-                    //Console.WriteLine("ViewBag.Kolor = " + ViewBag.Kolor);
+                        command3.Parameters.Add("@idproduktu", SqlDbType.Int);
+                        command3.Parameters["@idproduktu"].Value = produkt.Id;
+                        ViewBag.Kolor = command3.ExecuteScalar().ToString();
+                        //Console.WriteLine("ViewBag.Kolor = " + ViewBag.Kolor);
+                    }
+                    using (SqlCommand command4 = new SqlCommand(commandText4, connection))
+                    {
+                        command4.Parameters.Add("@idproduktu", SqlDbType.Int);
+                        command4.Parameters["@idproduktu"].Value = produkt.Id;
+                        try
+                        {
+                            ViewBag.SwitchType = command4.ExecuteScalar().ToString();
+                        } catch (NullReferenceException) { connection.Close(); return View(produkt); }
+                        //Console.WriteLine("ViewBag.Kolor = " + ViewBag.Kolor);
 
+                    } 
                 }
                 connection.Close();
             }

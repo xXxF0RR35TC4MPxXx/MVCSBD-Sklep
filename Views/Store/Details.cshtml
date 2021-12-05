@@ -10,7 +10,13 @@
 
 <table width="100%">
     <tr>
-        <td align="left" width="50%"><h2>@ViewBag.Producent @Model.Name</h2></td>
+        <td align="left" width="50%"><h2>
+            @if (ViewBag.Kategoria != "Gry")
+            {
+                @ViewBag.Producent
+            }
+            @Model.Name
+            </h2></td>
         @if (User.Identity.IsAuthenticated)
         {
             <td width="20%">
@@ -43,6 +49,7 @@
         <td>@ViewBag.Kategoria</td>
     </tr>
     <tr><td>&nbsp;</td></tr>
+
     <tr>
         <td><b>@Html.DisplayNameFor(Model => Model.Producent_Id)</b></td>
         <td>@ViewBag.Producent</td>

@@ -25,6 +25,7 @@ namespace MVCSBD_Sklep.Models
         [DataType(DataType.Date)]
         public DateTime ValidUntil { get; set; }
 
-        //public virtual ICollection<UserCode> UserCodes { get; set; } //lista emaili użytkowników którzy użyli już tego kodu
+        [Display(Name = "Dla którego usera:")]
+        public string DlaKtóregoUżytkownika { get; set; }
     }
 }

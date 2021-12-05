@@ -1,0 +1,51 @@
+﻿@model IEnumerable<MVCSBD_Sklep.Models.DiscountCode>
+
+@{
+    ViewBag.Title = "Panel kodów rabatowych";
+}
+
+<h2>Zarządzaj kodami rabatowymi:</h2>
+
+<p>
+    @Html.ActionLink("Dodaj nowy", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Code)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Discount)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ValidUntil)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DlaKtóregoUżytkownika)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Code)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Discount) %
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ValidUntil)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DlaKtóregoUżytkownika)
+        </td>
+        <td>
+            @Html.ActionLink("Edytuj", "Edit", new { id=item.DiscountCodeId }) |
+            @Html.ActionLink("Szczegóły", "Details", new { id=item.DiscountCodeId }) |
+            @Html.ActionLink("Usuń", "Delete", new { id=item.DiscountCodeId })
+        </td>
+    </tr>
+}
+
+</table>

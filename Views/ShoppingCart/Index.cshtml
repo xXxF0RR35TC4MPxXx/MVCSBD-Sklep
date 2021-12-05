@@ -62,7 +62,7 @@
             <span>
                 @foreach (var prod in ViewBag.Producenci)
                 {
-                    if (prod.Id == item.produkt.Producent_Id)
+                    if (prod.Id == item.produkt.Producent_Id && !prod.Name.ToLower().Contains("games"))
                     {
                         <span>@prod.Name </span>break;
                     }

@@ -12,7 +12,6 @@ namespace MVCSBD_Sklep.Controllers
     {
         // GET: Checkout
         XmoreltronikEntities storeDB = new XmoreltronikEntities();
-        const string PromoCode = "zaDarmoToUczciwaCena";
         public ActionResult AddressAndPayment()
         {
             ViewBag.DeliveryTypes = new SelectList(storeDB.DeliveryTypes, "Id", "Name");
@@ -27,17 +26,23 @@ namespace MVCSBD_Sklep.Controllers
         {
             ViewBag.DeliveryTypes = new SelectList(storeDB.DeliveryTypes, "Id", "Name");
             ViewBag.PaymentTypes = new SelectList(storeDB.PaymentTypes, "Id", "Name");
+
             var order = new Zamówienie();
             TryUpdateModel(order);
+
             var valuesKod = values["PromoCode"].ToLower();
-            DiscountCode kod = storeDB.DiscountCodes.Where(d => d.Code.ToLower() == valuesKod && d.ValidUntil > DateTime.Now).FirstOrDefault();
+            DiscountCode kod = storeDB.DiscountCodes.Where(
+                d => d.Code.ToLower() == valuesKod && 
+                d.ValidUntil > DateTime.Now && 
+                d.DlaKtóregoUżytkownika.ToLower() == User.Identity.Name.ToLower())
+                    .FirstOrDefault();
             try
             {
                 if (kod == null) //jeżeli nie ma ważnego kodu o podanej nazwie
                 {
                     if (!String.IsNullOrEmpty(valuesKod)) //jeśli podano nieważny kod
                     {
-                        ViewData["promoInvalid"] = "Nie ma takiego kodu rabatowego!";
+                        ViewData["promoInvalid"] = "Nie ma takiego kodu rabatowego lub został już wykorzystany!";
                         return View(order);
                     }
                     //jeżeli nie podano żadnego kodu
@@ -53,6 +58,8 @@ namespace MVCSBD_Sklep.Controllers
                     //Process the order
                     cart.CreateOrder(order);
 
+                    
+
                     return RedirectToAction("Complete",
                         new { id = order.OrderId });
                 }
@@ -66,10 +73,13 @@ namespace MVCSBD_Sklep.Controllers
 
                     //Save Order
                     storeDB.Zamówienia.Add(order);
+                    //dezaktywacja kodu rabatowego - zakładamy, że są jednorazowe
+                    kod.ValidUntil = DateTime.Now.AddDays(-7);
                     storeDB.SaveChanges();
                     //Process the order
                     cart.CreateOrder(order);
 
+                    
                     return RedirectToAction("Complete",
                         new { id = order.OrderId });
                 }

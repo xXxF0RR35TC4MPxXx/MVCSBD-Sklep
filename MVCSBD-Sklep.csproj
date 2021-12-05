@@ -176,6 +176,7 @@
     <Compile Include="Controllers\CountriesController.cs" />
     <Compile Include="Controllers\DeliveryStatesController.cs" />
     <Compile Include="Controllers\DeliveryTypesController.cs" />
+    <Compile Include="Controllers\DiscountCodesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\KategoriaController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
@@ -223,6 +224,10 @@
     <Compile Include="Migrations\XmoreltronikEntities\202112041918486_KategoriaIcon.cs" />
     <Compile Include="Migrations\XmoreltronikEntities\202112041918486_KategoriaIcon.Designer.cs">
       <DependentUpon>202112041918486_KategoriaIcon.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\XmoreltronikEntities\202112051128547_DiscountCodeForWhichUser.cs" />
+    <Compile Include="Migrations\XmoreltronikEntities\202112051128547_DiscountCodeForWhichUser.Designer.cs">
+      <DependentUpon>202112051128547_DiscountCodeForWhichUser.cs</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Color.cs" />
@@ -367,9 +372,6 @@
     <Content Include="Views\StoreManager\Details.cshtml" />
     <Content Include="Views\StoreManager\Edit.cshtml" />
     <Content Include="Views\StoreManager\Index.cshtml" />
-    <Content Include="Views\Store\Browse.cshtml" />
-    <Content Include="Views\Store\Details.cshtml" />
-    <Content Include="Views\Store\Index.cshtml" />
     <Content Include="Views\Zamówienie\Create.cshtml" />
     <Content Include="Views\Zamówienie\Delete.cshtml" />
     <Content Include="Views\Zamówienie\Details.cshtml" />
@@ -415,6 +417,14 @@
     <Content Include="Views\UserRoles\Manage.cshtml" />
     <Content Include="Views\Manage\MyOrders.cshtml" />
     <Content Include="Views\Manage\OrderDetails.cshtml" />
+    <Content Include="Views\Store\Browse.cshtml" />
+    <Content Include="Views\Store\Details.cshtml" />
+    <Content Include="Views\Store\Index.cshtml" />
+    <Content Include="Views\DiscountCodes\Create.cshtml" />
+    <Content Include="Views\DiscountCodes\Delete.cshtml" />
+    <Content Include="Views\DiscountCodes\Details.cshtml" />
+    <Content Include="Views\DiscountCodes\Edit.cshtml" />
+    <Content Include="Views\DiscountCodes\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
@@ -457,6 +467,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\XmoreltronikEntities\202112041918486_KategoriaIcon.resx">
       <DependentUpon>202112041918486_KategoriaIcon.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\XmoreltronikEntities\202112051128547_DiscountCodeForWhichUser.resx">
+      <DependentUpon>202112051128547_DiscountCodeForWhichUser.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

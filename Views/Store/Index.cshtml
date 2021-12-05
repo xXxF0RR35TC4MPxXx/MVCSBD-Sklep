@@ -9,9 +9,9 @@
 
 <link rel="stylesheet" href="~/Content/font-awesome/css/all.css">
 <div class="heading">
-    <h2>DostÄ™pne kategorie produktÃ³w</h2>
+    <h2>Dostêpne kategorie produktów</h2>
     <div>
-        Wybierz spoÅ›rÃ³d @Model.Count() kategorii:
+        Wybierz spoœród @Model.Count() kategorii:
     </div>
 </div>
 
@@ -25,13 +25,13 @@
 <div class="card-container">
     <div class="card-grid" style="text-align: center;">
         @foreach (var category in Model)
-        {   <a href="./Browse?kategoria=@category.Name" style="color:dimgrey;">
+        {<a href="../Store/Browse?kategoria=@category.Name" style="color:dimgrey;">
                 <div class="category-card">
                     <i style="font-size: 4.73em; height:50px; text-align:center; margin-left:auto; margin-right:auto;" class="@category.IconClassName"></i>
                     <br /><br />
-                      <div class="category-name">
-                          @category.Name
-                      </div>
+                    <div class="category-name">
+                        @category.Name
+                    </div>
                 </div>
             </a>
         }

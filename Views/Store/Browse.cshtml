@@ -33,7 +33,7 @@
                 <h3>
                     @foreach (var prod in ViewBag.Producenci)
                     {
-                        if (prod.Id == product.Producent_Id)
+                        if (prod.Id == product.Producent_Id && Model.Name != "Gry")
                         {
                             <span>@prod.Name </span><br/>
                             break;

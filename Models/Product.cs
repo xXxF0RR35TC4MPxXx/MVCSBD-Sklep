@@ -15,7 +15,7 @@ namespace MVCSBD_Sklep.Models
         public int Producent_Id { get; set; }
         public virtual Producent Producent { get; set; }
 
-        [Display(Name = "Model: ")]
+        [Display(Name = "Model / Nazwa: ")]
         public string Name { get; set; }
 
         public void SetReleaseDate() { this.ReleaseDate = DateTime.Now; }
