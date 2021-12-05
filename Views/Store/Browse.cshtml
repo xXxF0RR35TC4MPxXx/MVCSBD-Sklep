@@ -1,7 +1,7 @@
 ﻿@model MVCSBD_Sklep.Models.Kategoria
 
 @{ 
-    ViewBag.Title = "Browse";
+    ViewBag.Title = Model.Name;
     ViewBag.Kategoria = Model.Name; 
 }
 
@@ -9,6 +9,7 @@
 <link href="~/Content/general.css" rel="stylesheet" />
 
 <div>
+    <br />
     @Html.ActionLink("Powrót do strony głównej", "")
 </div>
 <div class="heading">

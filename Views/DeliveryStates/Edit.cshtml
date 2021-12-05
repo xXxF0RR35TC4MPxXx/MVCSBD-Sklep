@@ -4,13 +4,13 @@
     ViewBag.Title = "Edycja stanu realizacji";
 }
 
-<h2>Edit</h2>
+<h2>Edycja stanu realizacji</h2>
 
 
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    
+
     <div class="form-horizontal">
         <h4>DeliveryState</h4>
         <hr />
@@ -32,7 +32,10 @@
         </div>
     </div>
 }
-
+@if (ViewBag.Message != null)
+{
+    <br /><p style="color:red;">@ViewBag.Message</p>
+}
 <div>
     @Html.ActionLink("Back to List", "Index")
 </div>

@@ -4,40 +4,42 @@
 <link href="~/Content/cards.css" rel="stylesheet" />
 <link href="~/Content/general.css" rel="stylesheet" />
 <link rel="stylesheet" href="~/Content/font-awesome/css/all.css">
+
 <div>
+    <br />
     @Html.ActionLink("Powrót do listy produktów", "Browse", new { kategoria = ViewBag.Kategoria })
 </div>
 
 <table width="100%">
     <tr>
-        <td align="left" width="50%"><h2>
-            @if (ViewBag.Kategoria != "Gry")
-            {
-                @ViewBag.Producent
-            }
-            @Model.Name
-            </h2></td>
+        <td align="left" width="50%">
+            <h2>
+                @if (ViewBag.Kategoria != "Gry")
+                {
+    @ViewBag.Producent            }
+                @Model.Name
+            </h2>
+        </td>
         @if (User.Identity.IsAuthenticated)
         {
-            <td width="20%">
-                <a style="text-decoration:none; color:white;" class="CustomBtn2" href="/ShoppingCart/AddToCart/@Model.Id">Dodaj do <i class="fas fa-shopping-cart"></i></a>
-            </td>
-        }
+<td width="20%">
+    <a style="text-decoration:none; color:white;" class="CustomBtn2" href="/ShoppingCart/AddToCart/@Model.Id">Dodaj do <i class="fas fa-shopping-cart"></i></a>
+</td>}
         <td align="right" width="30%" style="color:red"><h2>@Model.Cena PLN </h2></td>
     </tr>
 </table>
 
 <div>
     @{ if (Directory.Exists(Server.MapPath("~/UploadedPhotos/" + Model.Id + "/")))
-                    {
-                        string link = "/UploadedPhotos/" + Model.Id + "/";
-                        if (Directory.EnumerateFileSystemEntries(Server.MapPath("~/UploadedPhotos/" + Model.Id + "/")).Any())
-                        {
-                            var files = Directory.GetFiles(Server.MapPath("~/UploadedPhotos/" + Model.Id + "/")).Select(f => new { FileName = Path.GetFileName(f) });
-                            <img class="product-img" src="@Url.Action("FileDownload",new { path = Server.MapPath("~/UploadedPhotos/" + Model.Id + "/" + files.First().FileName.Replace(" ", "%20"))})" alt="@files.First().FileName" /> }
-                        else
-                        { <img src="https://upload.wikimedia.org/wikipedia/commons/b/bd/Test.svg" class="product-img" /> @*Tu będzie Model.Img/Product.Img*@}
-                } }
+        {
+            string link = "/UploadedPhotos/" + Model.Id + "/";
+            if (Directory.EnumerateFileSystemEntries(Server.MapPath("~/UploadedPhotos/" + Model.Id + "/")).Any())
+            {
+                var files = Directory.GetFiles(Server.MapPath("~/UploadedPhotos/" + Model.Id + "/")).Select(f => new { FileName = Path.GetFileName(f) });
+<img class="product-img" src="@Url.Action("FileDownload",new { path = Server.MapPath("~/UploadedPhotos/" + Model.Id + "/" + files.First().FileName.Replace(" ", "%20"))})" alt="@files.First().FileName" /> }
+else
+{ <img src="https://upload.wikimedia.org/wikipedia/commons/b/bd/Test.svg" class="product-img" /> @*Tu będzie Model.Img/Product.Img*@}
+} }
 
     <p><h4>Opis: </h4>@Html.Raw(Model.Description)</p>
 </div>
@@ -67,47 +69,52 @@
     <tr><td>&nbsp;</td></tr>
     @if (ViewBag.Kategoria != "Gry")
     {
-        <tr>
-            <td><b>@Html.DisplayNameFor(Model => Model.CzyRGB)</b></td>
-            <td>@Model.CzyRGB</td>
-        </tr>
-        <tr><td>&nbsp;</td></tr>}
+<tr>
+    <td><b>@Html.DisplayNameFor(Model => Model.CzyRGB)</b></td>
+    <td>@Model.CzyRGB</td>
+</tr>
+                <tr><td>&nbsp;</td></tr>
+}
     @if (ViewBag.Kategoria == "Myszki")
     {
 
-        <tr>
-            <td><b>@Html.DisplayNameFor(Model => Model.MaxDPI)</b></td>
-            <td>@Model.MaxDPI</td>
-        </tr>
-        <tr><td>&nbsp;</td></tr>}
+<tr>
+    <td><b>@Html.DisplayNameFor(Model => Model.MaxDPI)</b></td>
+    <td>@Model.MaxDPI</td>
+</tr>
+                <tr><td>&nbsp;</td></tr>
+}
     @if (ViewBag.Kategoria == "Klawiatury")
     {
 
-        <tr>
-            <td><b>@Html.DisplayNameFor(Model => Model.SwitchType_Id)</b></td>
-            <td>@ViewBag.SwitchType</td>
-        </tr>
-        <tr><td>&nbsp;</td></tr>}
+<tr>
+    <td><b>@Html.DisplayNameFor(Model => Model.SwitchType_Id)</b></td>
+    <td>@ViewBag.SwitchType</td>
+</tr>
+                <tr><td>&nbsp;</td></tr>
+}
     @if (ViewBag.Kategoria == "Myszki" || ViewBag.Kategoria == "Klawiatury" || ViewBag.Kategoria == "Kontrolery")
     {
-        <tr>
-            <td><b>@Html.DisplayNameFor(Model => Model.ButtonCount)</b></td>
-            <td>@Model.ButtonCount</td>
-        </tr>
-                <tr><td>&nbsp;</td></tr>}
+<tr>
+    <td><b>@Html.DisplayNameFor(Model => Model.ButtonCount)</b></td>
+    <td>@Model.ButtonCount</td>
+</tr>
+                <tr><td>&nbsp;</td></tr>
+}
     @if (ViewBag.Kategoria != "Gry")
     {
-        <tr>
-            <td><b>@Html.DisplayNameFor(Model => Model.IsWireless)</b></td>
-            <td>@Model.IsWireless</td>
-        </tr>
-        <tr><td>&nbsp;</td></tr>
+<tr>
+    <td><b>@Html.DisplayNameFor(Model => Model.IsWireless)</b></td>
+    <td>@Model.IsWireless</td>
+</tr>
+                <tr><td>&nbsp;</td></tr>
 
-        <tr>
-            <td><b>@Html.DisplayNameFor(Model => Model.Color_Id)</b></td>
-            <td>@ViewBag.Kolor</td>
-        </tr>
-        <tr><td>&nbsp;</td></tr>}
+                                <tr>
+                                    <td><b>@Html.DisplayNameFor(Model => Model.Color_Id)</b></td>
+                                    <td>@ViewBag.Kolor</td>
+                                </tr>
+                                                <tr><td>&nbsp;</td></tr>
+}
 
     <tr>
         <td><b>Pliki dodatkowe:</b></td>
@@ -121,8 +128,7 @@
                     foreach (var s in files)
                     {
                         string link2 = link + s.FileName.Replace(" ", "%20");
-                        <a href=@link2>@s.FileName</a><br /> 
-                    }
+<a href=@link2>@s.FileName</a><br /> }
                 }
                 else
                 { <p>brak</p> }
@@ -145,14 +151,14 @@
                     foreach (var s in files)
                     {
                         string link2 = link + s.FileName.Replace(" ", "%20");
-                        <img class="product-img" src="@Url.Action("FileDownload",new { path = Server.MapPath("~/UploadedPhotos/" + Model.Id + "/" + s.FileName.Replace(" ", "%20"))})" alt="@s.FileName"/>
-                    }
-                }
-                else
-                { <p>brak</p> }
-            }
-            else
-            { <p>brak</p>}
+<img class="product-img" src="@Url.Action("FileDownload",new { path = Server.MapPath("~/UploadedPhotos/" + Model.Id + "/" + s.FileName.Replace(" ", "%20"))})" alt="@s.FileName" />
+}
+}
+else
+{ <p>brak</p> }
+}
+else
+{ <p>brak</p>}
         </td>
     </tr>
 
@@ -160,20 +166,21 @@
 
     @if (User.IsInRole("Admin"))
     {
-        <tr>
-            <td><b>Dodaj pdf lub zdjęcia:</b></td>
-            <td>
-                @using (Html.BeginForm("UploadFile", "Store", FormMethod.Post, new { enctype = "multipart/form-data" }))
-                {
-                <div>
-                    @Html.HiddenFor(model => model.Id)
-                    @Html.TextBox("file", "", new { type = "file" }) <br />
-                    <input type="submit" value="Dodaj plik" />
-                    @ViewBag.Message
-                </div>
-                }
-            </td>
-        </tr>
-     }
+<tr>
+    <td><b>Dodaj pdf lub zdjęcia:</b></td>
+    <td>
+        @using (Html.BeginForm("UploadFile", "Store", FormMethod.Post, new { enctype = "multipart/form-data" }))
+        {
+<div>
+    @Html.HiddenFor(model => model.Id)
+    @Html.TextBox("file", "", new { type = "file" }) <br />
+    <input type="submit" value="Dodaj plik" />
+    @ViewBag.Message
+</div>                }
+    </td>
+</tr>}
 </table>
-<br/><br /><br /><br />
+<br />
+<br />
+<br />
+<br />

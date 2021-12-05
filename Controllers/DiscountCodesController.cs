@@ -48,6 +48,12 @@ namespace MVCSBD_Sklep.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "DiscountCodeId,Code,Discount,ValidUntil,DlaKtóregoUżytkownika")] DiscountCode discountCode)
         {
+            DiscountCode czyIstnieje = db.DiscountCodes.FirstOrDefault(p => p.Code.ToLower() == discountCode.Code.ToLower());
+            if (czyIstnieje != null)
+            {
+                ViewBag.Message = "Kod rabatowy o podanej nazwie już istnieje!";
+                return View(discountCode);
+            }
             if (ModelState.IsValid)
             {
                 db.DiscountCodes.Add(discountCode);
@@ -80,6 +86,7 @@ namespace MVCSBD_Sklep.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "DiscountCodeId,Code,Discount,ValidUntil,DlaKtóregoUżytkownika")] DiscountCode discountCode)
         {
+            
             if (ModelState.IsValid)
             {
                 db.Entry(discountCode).State = EntityState.Modified;

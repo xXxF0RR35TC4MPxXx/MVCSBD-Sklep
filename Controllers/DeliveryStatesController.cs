@@ -49,6 +49,12 @@ namespace MVCSBD_Sklep.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "Id,Name")] DeliveryState deliveryState)
         {
+            DeliveryState czyIstnieje = db.DeliveryStates.FirstOrDefault(p => p.Name.ToLower() == deliveryState.Name.ToLower());
+            if (czyIstnieje != null)
+            {
+                ViewBag.Message = "Stan realizacji zamówienia o podanej nazwie już istnieje!";
+                return View(deliveryState);
+            }
             if (ModelState.IsValid)
             {
                 db.DeliveryStates.Add(deliveryState);
@@ -81,6 +87,7 @@ namespace MVCSBD_Sklep.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "Id,Name")] DeliveryState deliveryState)
         {
+            
             if (ModelState.IsValid)
             {
                 db.Entry(deliveryState).State = EntityState.Modified;

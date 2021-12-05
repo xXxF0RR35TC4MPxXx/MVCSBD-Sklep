@@ -49,6 +49,12 @@ namespace MVCSBD_Sklep.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "Id,Name")] Color color)
         {
+            Color czyIstnieje = db.Colors.FirstOrDefault(p => p.Name.ToLower() == color.Name.ToLower());
+            if (czyIstnieje != null)
+            {
+                ViewBag.Message = "Kolor o podanej nazwie już istnieje!";
+                return View(color);
+            }
             if (ModelState.IsValid)
             {
                 db.Colors.Add(color);
@@ -81,6 +87,7 @@ namespace MVCSBD_Sklep.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "Id,Name")] Color color)
         {
+            
             if (ModelState.IsValid)
             {
                 db.Entry(color).State = EntityState.Modified;

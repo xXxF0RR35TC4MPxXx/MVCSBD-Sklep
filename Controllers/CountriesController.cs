@@ -49,6 +49,12 @@ namespace MVCSBD_Sklep.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "Id,Name")] Country country)
         {
+            Country czyIstnieje = db.Countries.FirstOrDefault(p => p.Name.ToLower() == country.Name.ToLower());
+            if (czyIstnieje != null)
+            {
+                ViewBag.Message = "Kraj o podanej nazwie już istnieje!";
+                return View(country);
+            }
             if (ModelState.IsValid)
             {
                 db.Countries.Add(country);
@@ -81,6 +87,7 @@ namespace MVCSBD_Sklep.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "Id,Name")] Country country)
         {
+            
             if (ModelState.IsValid)
             {
                 db.Entry(country).State = EntityState.Modified;

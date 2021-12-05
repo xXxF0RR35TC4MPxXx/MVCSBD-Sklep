@@ -49,6 +49,12 @@ namespace MVCSBD_Sklep.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "Id,Name")] DeliveryType deliveryType)
         {
+            DeliveryType czyIstnieje = db.DeliveryTypes.FirstOrDefault(p => p.Name.ToLower() == deliveryType.Name.ToLower());
+            if (czyIstnieje != null)
+            {
+                ViewBag.Message = "Sposób dostawy o podanej nazwie już istnieje!";
+                return View(deliveryType);
+            }
             if (ModelState.IsValid)
             {
                 db.DeliveryTypes.Add(deliveryType);
@@ -81,6 +87,7 @@ namespace MVCSBD_Sklep.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "Id,Name")] DeliveryType deliveryType)
         {
+            
             if (ModelState.IsValid)
             {
                 db.Entry(deliveryType).State = EntityState.Modified;

@@ -1,16 +1,16 @@
 ﻿@model MVCSBD_Sklep.Models.DiscountCode
 
 @{
-    ViewBag.Title = "Edit";
+    ViewBag.Title = "Edycja kodu rabatowego";
 }
 
-<h2>Edit</h2>
+<h2>Edycja kodu rabatowego</h2>
 
 
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    
+
     <div class="form-horizontal">
         <h4>DiscountCode</h4>
         <hr />
@@ -55,7 +55,10 @@
         </div>
     </div>
 }
-
+@if (ViewBag.Message != null)
+{
+    <br /><p style="color:red;">@ViewBag.Message</p>
+}
 <div>
     @Html.ActionLink("Back to List", "Index")
 </div>

@@ -186,6 +186,7 @@
     <Compile Include="Controllers\ShoppingCartController.cs" />
     <Compile Include="Controllers\StoreController.cs" />
     <Compile Include="Controllers\StoreManagerController.cs" />
+    <Compile Include="Controllers\SwitchTypesController.cs" />
     <Compile Include="Controllers\UserRolesController.cs" />
     <Compile Include="Controllers\ZamówienieController.cs" />
     <Compile Include="Global.asax.cs">
@@ -425,6 +426,11 @@
     <Content Include="Views\DiscountCodes\Details.cshtml" />
     <Content Include="Views\DiscountCodes\Edit.cshtml" />
     <Content Include="Views\DiscountCodes\Index.cshtml" />
+    <Content Include="Views\SwitchTypes\Create.cshtml" />
+    <Content Include="Views\SwitchTypes\Delete.cshtml" />
+    <Content Include="Views\SwitchTypes\Details.cshtml" />
+    <Content Include="Views\SwitchTypes\Edit.cshtml" />
+    <Content Include="Views\SwitchTypes\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

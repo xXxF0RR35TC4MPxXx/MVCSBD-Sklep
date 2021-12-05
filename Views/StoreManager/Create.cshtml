@@ -4,7 +4,7 @@
     ViewBag.Title = "Dodaj produkt";
 }
 
-<h2>Create</h2>
+<h2>Dodaj produkt</h2>
 
 
 @using (Html.BeginForm())
@@ -132,7 +132,10 @@
     @Html.ValidationMessageFor(model => model.Color_Id, "", new { @class = "text-danger" })
     @Html.ValidationMessageFor(model => model.IsWireless, "", new { @class = "text-danger" })
     @Html.ValidationMessageFor(model => model.Cena, "", new { @class = "text-danger" })
-
+    @if(ViewBag.Message != null)
+    {
+        <br/><p style="color:red;">@ViewBag.Message;</p>
+    }
 
 
 

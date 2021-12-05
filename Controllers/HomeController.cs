@@ -18,6 +18,13 @@ namespace MVCSBD_Sklep.Controllers
 
             List<Product> topProdukty = storeDB.Products.OrderByDescending(d => d.ReleaseDate).Take(10).ToList();
             ViewBag.Produkty = topProdukty;
+            if (User.Identity.IsAuthenticated) { 
+                DiscountCode twójKodRabatowy = storeDB.DiscountCodes.FirstOrDefault(
+                    c => c.DlaKtóregoUżytkownika.ToLower() == User.Identity.Name.ToLower()
+                    && c.ValidUntil > DateTime.Now);
+                if (twójKodRabatowy != null)
+                    ViewBag.Promocja = twójKodRabatowy;
+            }
             return View();
         }
 

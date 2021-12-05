@@ -49,6 +49,12 @@ namespace MVCSBD_Sklep.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "Id,Name")] Producent producent)
         {
+            Producent czyIstnieje = db.Producents.FirstOrDefault(p => p.Name.ToLower() == producent.Name.ToLower());
+            if (czyIstnieje != null)
+            {
+                ViewBag.Message = "Producent o podanej nazwie już istnieje!";
+                return View(producent);
+            }
             if (ModelState.IsValid)
             {
                 db.Producents.Add(producent);
@@ -81,6 +87,7 @@ namespace MVCSBD_Sklep.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "Id,Name")] Producent producent)
         {
+            
             if (ModelState.IsValid)
             {
                 db.Entry(producent).State = EntityState.Modified;

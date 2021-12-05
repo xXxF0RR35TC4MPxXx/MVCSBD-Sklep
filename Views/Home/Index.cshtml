@@ -1,5 +1,6 @@
 ﻿@model MVCSBD_Sklep.Models.Product
-@{ ViewBag.Title = "Home Page"; }
+@{ ViewBag.Title = "Home Page";
+}
 
 <link href="~/Content/cards.css" rel="stylesheet" />
 <link href="~/Content/general.css" rel="stylesheet" />
@@ -9,7 +10,12 @@
     <h1>X-moreltronik.com</h1>
     <p class="lead">Tu będzie więcej rzeczy. Chyba.</p>
 </div>
-
+@if (ViewBag.Promocja != null)
+{
+    <div>
+        <p style="text-align:center;">Kliencie! Z kodem <b>"@ViewBag.Promocja.Code"</b> otrzymasz <span style="color:red;">@ViewBag.Promocja.Discount%</span> zniżki przy następnym zamówieniu! Oferta ważna do <b>@ViewBag.Promocja.ValidUntil</b> !</p>
+    </div>
+}
 <div>
     <div class="heading">
         <h2>Najczęściej kupowane produkty:</h2>
@@ -28,7 +34,7 @@
                                 {
                                     IEnumerable<dynamic> files = Directory.GetFiles(Server.MapPath("~/UploadedPhotos/" + product.Id + "/"));
                                     files = files.Select(f => new { FileName = Path.GetFileName(f) });
-                                    <img class="mini-product-img" src="@Url.Action("FileDownload", new { path = Server.MapPath("~/UploadedPhotos/" + product.Id + "/" + files.First().FileName.Replace(" ", "%20")) })" alt="@files.First().FileName" /> 
+                                    <img class="mini-product-img" src="@Url.Action("FileDownload", new { path = Server.MapPath("~/UploadedPhotos/" + product.Id + "/" + files.First().FileName.Replace(" ", "%20")) })" alt="@files.First().FileName" />
                                 }
                             }
                             else
@@ -38,8 +44,8 @@
                         }
                     </a>
                     Kupiono: @product.OrderCount X
-                </p>            
-             }
+                </p>
+            }
         </div>
     </div>
 </div>
@@ -53,24 +59,24 @@
             @foreach (MVCSBD_Sklep.Models.Product product in ViewBag.Produkty)
             {
                 <a class="top-product-card" href="/Store/Details/@product.Id">
-                        @{
-                            if (Directory.Exists(Server.MapPath("~/UploadedPhotos/" + product.Id + "/")))
+                    @{
+                        if (Directory.Exists(Server.MapPath("~/UploadedPhotos/" + product.Id + "/")))
+                        {
+                            string link = "/UploadedPhotos/" + product.Id + "/";
+                            if (Directory.EnumerateFileSystemEntries(Server.MapPath("~/UploadedPhotos/" + product.Id + "/")).Any())
                             {
-                                string link = "/UploadedPhotos/" + product.Id + "/";
-                                if (Directory.EnumerateFileSystemEntries(Server.MapPath("~/UploadedPhotos/" + product.Id + "/")).Any())
-                                {
-                                    IEnumerable<dynamic> files = Directory.GetFiles(Server.MapPath("~/UploadedPhotos/" + product.Id + "/"));
-                                    files = files.Select(f => new { FileName = Path.GetFileName(f) });
-                                    <img class="mini-product-img" src="@Url.Action("FileDownload", new { path = Server.MapPath("~/UploadedPhotos/" + product.Id + "/" + files.First().FileName.Replace(" ", "%20")) })" alt="@files.First().FileName" /> 
-                                }
-                            }
-                            else
-                            {
-                                <img src="https://upload.wikimedia.org/wikipedia/commons/b/bd/Test.svg" class="mini-product-img" /> @*Tu będzie Model.Img/Product.Img*@
+                                IEnumerable<dynamic> files = Directory.GetFiles(Server.MapPath("~/UploadedPhotos/" + product.Id + "/"));
+                                files = files.Select(f => new { FileName = Path.GetFileName(f) });
+                                <img class="mini-product-img" src="@Url.Action("FileDownload", new { path = Server.MapPath("~/UploadedPhotos/" + product.Id + "/" + files.First().FileName.Replace(" ", "%20")) })" alt="@files.First().FileName" />
                             }
                         }
-                    </a>
-             }
+                        else
+                        {
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/b/bd/Test.svg" class="mini-product-img" /> @*Tu będzie Model.Img/Product.Img*@
+                        }
+                    }
+                </a>
+            }
         </div>
     </div>
 </div>

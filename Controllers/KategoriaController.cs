@@ -49,6 +49,12 @@ namespace MVCSBD_Sklep.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "Id,Name")] Kategoria kategoria)
         {
+            Kategoria czyIstnieje = db.Categories.FirstOrDefault(p => p.Name.ToLower() == kategoria.Name.ToLower());
+            if (czyIstnieje != null)
+            {
+                ViewBag.Message = "Kategoria o podanej nazwie już istnieje!";
+                return View(kategoria);
+            }
             if (ModelState.IsValid)
             {
                 db.Categories.Add(kategoria);
@@ -81,6 +87,7 @@ namespace MVCSBD_Sklep.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "Id,Name")] Kategoria kategoria)
         {
+            
             if (ModelState.IsValid)
             {
                 db.Entry(kategoria).State = EntityState.Modified;

@@ -49,6 +49,12 @@ namespace MVCSBD_Sklep.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "Id,Name")] PaymentType paymentType)
         {
+            PaymentType czyIstnieje = db.PaymentTypes.FirstOrDefault(p => p.Name.ToLower() == paymentType.Name.ToLower());
+            if (czyIstnieje != null)
+            {
+                ViewBag.Message = "Metoda płatności o podanej nazwie już istnieje!";
+                return View(paymentType);
+            }
             if (ModelState.IsValid)
             {
                 db.PaymentTypes.Add(paymentType);
@@ -62,6 +68,7 @@ namespace MVCSBD_Sklep.Controllers
         // GET: PaymentTypes/Edit/5
         public ActionResult Edit(int? id)
         {
+            
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -81,6 +88,7 @@ namespace MVCSBD_Sklep.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "Id,Name")] PaymentType paymentType)
         {
+           
             if (ModelState.IsValid)
             {
                 db.Entry(paymentType).State = EntityState.Modified;

@@ -65,9 +65,16 @@ namespace MVCSBD_Sklep.Controllers
             ViewBag.Kategorie = new SelectList(db.Categories, "Id", "Name");
             ViewBag.Kolory = new SelectList(db.Colors, "Id", "Name");
             ViewBag.Switche = new SelectList(db.SwitchTypes, "Id", "Name");
+            Product czyIstnieje = db.Products.FirstOrDefault(p => p.Name.ToLower() == product.Name.ToLower());
+            if (czyIstnieje != null)
+            {
+                ViewBag.Message = "Produkt o podanej nazwie już istnieje!";
+                return View(product);
+            }
             product.SetReleaseDate();
             if (ModelState.IsValid)
             {
+                
                 product.Producent = db.Producents.FirstOrDefault(p => p.Id == product.Producent_Id);
                 product.Color = db.Colors.FirstOrDefault(p => p.Id == product.Color_Id);
                 product.SwitchType = db.SwitchTypes.FirstOrDefault(p => p.Id == product.SwitchType_Id);
@@ -116,7 +123,7 @@ namespace MVCSBD_Sklep.Controllers
             ViewBag.Kategorie = new SelectList(db.Categories, "Id", "Name");
             ViewBag.Kolory = new SelectList(db.Colors, "Id", "Name");
             ViewBag.Switche = new SelectList(db.SwitchTypes, "Id", "Name");
-
+            
             if (ModelState.IsValid)
             {
                 db.Entry(product).State = EntityState.Modified;
